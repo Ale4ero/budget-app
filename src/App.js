@@ -14,9 +14,9 @@ import {Chart as chartjs, CategoryScale, LinearScale, BarElement, Tooltip, Legen
 
 import { Bar, Doughnut } from 'react-chartjs-2';
 
-chartjs.register(
-  CategoryScale, LinearScale, BarElement, Tooltip, Legend
-)
+// chartjs.register(
+//   CategoryScale, LinearScale, BarElement, Tooltip, Legend
+// )
 
 
 
