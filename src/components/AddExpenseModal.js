@@ -6,7 +6,7 @@ export default function AddExpenseModal({ show, handleClose, defaultBudgetId }) 
     const descriptionRef = useRef()
     const amountRef = useRef()
     const budgetIdRef = useRef()
-    const { addExpense, budgets } = useBudgets()
+    const { addExpense, budgets, setGraphData } = useBudgets()
 
     function handleSubmit(e){
         addExpense({
@@ -14,6 +14,7 @@ export default function AddExpenseModal({ show, handleClose, defaultBudgetId }) 
             amount: parseFloat(amountRef.current.value), //parse from string to float
             budgetId: budgetIdRef.current.value
         })
+        setGraphData()
         handleClose()
     }
 
@@ -26,7 +27,7 @@ export default function AddExpenseModal({ show, handleClose, defaultBudgetId }) 
             <Modal.Body>
                 <Form.Group className="mb-3" controlId="description">
                     <Form.Label>Description</Form.Label>
-                    <Form.Control ref={descriptionRef} type="text" required/>
+                    <Form.Control ref={descriptionRef} type="text" autoComplete="off" required/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="amount">
                     <Form.Label>Amount</Form.Label>

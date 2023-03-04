@@ -5,14 +5,16 @@ import { useBudgets } from "../contexts/BudgetContext"
 export default function AddBudgetModal({ show, handleClose}) {
     const nameRef = useRef()
     const maxRef = useRef()
-    const { addBudget } = useBudgets()
+    const { addBudget, setGraphData } = useBudgets()
 
     function handleSubmit(e){
         addBudget({
             name: nameRef.current.value,
             max: parseFloat(maxRef.current.value), //parse from string to float
         })
+        setGraphData()
         handleClose()
+
     }
 
   return (

@@ -2,8 +2,9 @@ import { Modal, Button, Stack } from "react-bootstrap"
 import { UNCATEGORIZED_BUDGET_ID, useBudgets } from "../contexts/BudgetContext"
 import { currencyFormatter } from "../utils"
 
+
 export default function ViewExpensesModal({ budgetId, handleClose}) {
-    const { getBudgetExpenses, budgets, deleteBudget, deleteExpense } = useBudgets()
+    const { getBudgetExpenses, budgets, deleteBudget, deleteExpense, setGraphData } = useBudgets()
 
     const budget = UNCATEGORIZED_BUDGET_ID === budgetId ? {name: "Uncategorized", id: UNCATEGORIZED_BUDGET_ID} : budgets.find(b=> b.id === budgetId)
     const expenses = getBudgetExpenses(budgetId)
@@ -19,9 +20,10 @@ export default function ViewExpensesModal({ budgetId, handleClose}) {
                         onClick={()=>{
                             deleteBudget(budget) 
                             handleClose()
+                            
                         }} 
                         variant="outline-danger">
-                            Delete
+                            Delete Category
                         </Button>
                     )}
                 </Stack>

@@ -1,7 +1,10 @@
 import { Card, ProgressBar, Stack, Button } from "react-bootstrap";
 import { currencyFormatter } from "../utils";
+import { useBudgets } from "../contexts/BudgetContext";
 
 export default function BudgetCard({name, amount, max, gray, hideButtons, onAddExpenseClick, onViewExpensesClick}) {
+
+    const {budget, deleteBudget } = useBudgets()
 
     const classNames = []
 
@@ -37,6 +40,7 @@ export default function BudgetCard({name, amount, max, gray, hideButtons, onAddE
                     <Stack direction="horizontal" gap={2} className="mt-4">
                     <Button variant="outline-primary" className="ms-auto" onClick={onAddExpenseClick}>Add Expense</Button>
                     <Button variant="outline-secondary" onClick={onViewExpensesClick}>View Expense</Button>
+                    {/* <Button onClick={()=>{ deleteBudget(budget)}} variant="outline-danger">Delete</Button> */}
                     </Stack>
                 )}
                 
