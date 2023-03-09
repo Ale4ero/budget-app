@@ -14,9 +14,9 @@ import {Chart as chartjs, CategoryScale, LinearScale, BarElement, Tooltip, Legen
 
 import { Bar, Doughnut } from 'react-chartjs-2';
 
-// chartjs.register(
-//   CategoryScale, LinearScale, BarElement, Tooltip, Legend
-// )
+chartjs.register(
+  CategoryScale, LinearScale, BarElement, Tooltip, Legend
+)
 
 
 
@@ -34,13 +34,11 @@ function App() {
   const [addExpenseModalBudgetId, setAddExpenseModalModalId] = useState()
 
   //getting budgets and expenses from useBudgets context
-  const {budgets, getBudgetExpenses} = useBudgets()
+  const {budgets, getBudgetExpenses, expenses} = useBudgets()
 
   
- const catNames= []
- const catSpending = []
- const catMax = []
-
+  const totalAmount = expenses.reduce((total, expense) => total + expense.amount, 0)
+  const totalMax = budgets.reduce((total, budget) => total + budget.max, 0)
 
 
   function openAddExpenseModal(budgetId){
@@ -51,16 +49,7 @@ function App() {
 
   
 
-function getChartData(){
-  for(var i = 0; i < budgets.length; i++ ){  
-    const amount = getBudgetExpenses(budgets[i].id).reduce(
-      (total, expense) => total + expense.amount, 0)
-    //storing name of budget in array 'catNames[]'
-    catNames[i] = budgets[i].name 
-    catMax[i] = budgets[i].max 
-    catSpending[i] = amount
-  }
-}
+
 
   const [barChartData, setBarChartData] = useState({
     datasets: []
@@ -74,6 +63,20 @@ function getChartData(){
 
 
   useEffect(()=>{
+    const catNames= []
+    const catSpending = []
+    const catMax = []
+
+    function getChartData(){
+      for(var i = 0; i < budgets.length; i++ ){  
+        const amount = getBudgetExpenses(budgets[i].id).reduce(
+          (total, expense) => total + expense.amount, 0)
+        //storing name of budget in array 'catNames[]'
+        catNames[i] = budgets[i].name 
+        catMax[i] = budgets[i].max 
+        catSpending[i] = amount
+      }
+    }
   
 
     getChartData()
@@ -85,12 +88,7 @@ function getChartData(){
           label: 'Spent',
           data: catSpending,
           backgroundColor: ['#4D9DE0', '#EE4266', '#FFD23F', '#23B476', '#F89A3B']
-        },
-        // {
-        //   label: 'Budget',
-        //   data: catMax,
-        //   backgroundColor: '#F89A3B'
-        // }
+        }
       ]
     })
 
@@ -100,7 +98,8 @@ function getChartData(){
         {
           label: 'Spent',
           data: catSpending,
-          backgroundColor: ['#4D9DE0', '#EE4266', '#FFD23F', '#23B476', '#F89A3B']
+          backgroundColor: ['#4D9DE0', '#EE4266', '#FFD23F', '#23B476', '#F89A3B'],
+          borderColor : "rgba(0,0,0,0)"
         },
       ]
     })
@@ -140,6 +139,7 @@ function getChartData(){
             }
           }
         }
+
         
         
       }
@@ -153,41 +153,46 @@ function getChartData(){
         }
       },
     })
+
   }, [])
 
   return (
     <>
     
     <div className="App">
-
+   
     
+
       <Sidebar></Sidebar>
 
 
-      <div className="graphsContainer">
-        <div className="topGraphs">
+      <Container className="graphsContainer">
+        
           <div className="barGraph">
             <Bar data={barChartData} options={barChartOptions}></Bar>
           </div>
           <div  className="donutGraph">
             <Doughnut data={donutChartData} options={donutChartOptions}></Doughnut>
           </div>
+          <div className="dataContainer">
+            <TotalBudgetCard/>
+          </div>
 
-        </div>
+      
           
                           
-      </div>
+      </Container>
 
       {/* Monthly Budgets Container */}
       <div className="budgets">
 
         
       
-        <Container className="my-4" >
+        <Container className="budgetsContainer my-4">
 
           <Stack direction="horizontal" gap="2" className="mb-4">
             {/*Heading for The Budgets*/}
-            <h1 className="me-auto">Monthly Budgets</h1>
+            <h1 className="me-auto">March Budgets</h1>
 
             {/* Buttons in heading */}
             <Button variant="primary" onClick={()=> setShowAddBudgetModal(true)}>Add Category</Button>
@@ -219,7 +224,7 @@ function getChartData(){
 
             {/* add uncategorized and total budget cards */}
             <UncategorizedBudgetCard onAddExpenseClick= {openAddExpenseModal} onViewExpensesClick={() => setViewExpensesModalBudgetId(UNCATEGORIZED_BUDGET_ID)}/>
-            <TotalBudgetCard/>
+            
           </div>
         </Container>
       

@@ -2,12 +2,13 @@
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
 }
 
 :root{
     --primary: #3B71CA;
     --dark: #332D2D;
-    --gray: #756388;
+    --gray: #515152;
     --light: #FBFBFB;
 }
 
@@ -16,39 +17,63 @@
     height: 100vh;
 }
 
+/* .graphs{
+    left: 200px;
+    right: 0;
+    position: absolute;
+    display: flex;
 
+} */
 
 .graphsContainer{
     left: 200px;
     right: 0;
     position: absolute;
     display: flex;
-    align-items: baseline;
+    align-items: center;
     justify-content: space-around;
     margin-top: 20px;
-    
+    gap: 30px;
+    height: 300px;
+    /* background-color: coral; */
 }
 
-.topGraphs{
-    display: flex;
-    gap: 5vw;
-    height: 300px;
-} 
 
 .barGraph{
-    width: 600px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    height: 100%;
+    width: 50%;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .donutGraph{
-    width: 350px;
+    /* width: 300px; */
+    width: 25%;
+    height: 100%;
     box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     padding: 10px;
     display: flex;
     justify-content: center;
+}
+
+.dataContainer{
+    /* width: 300px; */
+    width: 25%;
+    box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    height:100%;
+    padding: 5px;
+    display: flexbox;
+}
+
+.totalDetails{
+    margin-top: 10px;
+    margin: 0 10px;
 }
 
 .budgets{
@@ -57,14 +82,16 @@
     right: 0;
     position: absolute;
     display: flex;
+    /* background-color: #756388; */
     
 }
 
-.my-4{
+.budgetsContainer {
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     padding: 25px;
 }
+
 
 .side-nav-container{
     background-color: var(--primary);
@@ -129,6 +156,16 @@
     border-radius: 6px;
     box-shadow: 3px 3px 10px rgba(255, 255, 255, 0.3);
     transition: 0.2s;
+}
+
+.optionsIcon{
+    margin-left: 10px;
+    padding: 0 5px;
+    color: var(--gray);
+}
+
+.optionsIcon:hover{
+    cursor: pointer;
 }
 
 
