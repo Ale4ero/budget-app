@@ -184,7 +184,7 @@ function App() {
 
         
       
-        <Container className="budgetsContainer my-4">
+        <Container className="budgetsContainer my-4 mx-3">
 
           <Stack direction="horizontal" gap="2" className="mb-4">
             {/*Heading for The Budgets*/}
@@ -196,12 +196,7 @@ function App() {
           </Stack> 
 
           {/* style for the div for budget cards */}
-          <div style={{ 
-              display: "grid", 
-              gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))",
-              gap: "1rem",
-              alignItems: "flex-start",
-          }}>
+          <div className="budgetGrid">
             {/* For each budget create a budget card */}
             {budgets.map(budget =>{
               const amount = getBudgetExpenses(budget.id).reduce(
