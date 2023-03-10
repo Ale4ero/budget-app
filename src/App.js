@@ -36,9 +36,7 @@ function App() {
   //getting budgets and expenses from useBudgets context
   const {budgets, getBudgetExpenses, expenses} = useBudgets()
 
-  
-  const totalAmount = expenses.reduce((total, expense) => total + expense.amount, 0)
-  const totalMax = budgets.reduce((total, budget) => total + budget.max, 0)
+ 
 
 
   function openAddExpenseModal(budgetId){
@@ -165,9 +163,9 @@ function App() {
 
       <Sidebar></Sidebar>
 
-
-      <Container className="graphsContainer">
-        
+      <div className="graphs">
+        <Container className="graphsContainer">
+          
           <div className="barGraph">
             <Bar data={barChartData} options={barChartOptions}></Bar>
           </div>
@@ -176,13 +174,11 @@ function App() {
           </div>
           <div className="dataContainer">
             <TotalBudgetCard/>
-          </div>
+          </div>                   
+        </Container>
 
+      </div>
       
-          
-                          
-      </Container>
-
       {/* Monthly Budgets Container */}
       <div className="budgets">
 
@@ -210,6 +206,8 @@ function App() {
             {budgets.map(budget =>{
               const amount = getBudgetExpenses(budget.id).reduce(
                 (total, expense) => total + expense.amount, 0)
+             const id = budget.id
+            //  console.log("budget id: "+id)
               return (
                       <BudgetCard 
                         key={budget.id}
@@ -218,6 +216,8 @@ function App() {
                         max={budget.max}
                         onAddExpenseClick={() => openAddExpenseModal(budget.id)}
                         onViewExpensesClick={() => setViewExpensesModalBudgetId(budget.id)}
+                        budgetId={id}
+                 
                       />
                       )   
             })}

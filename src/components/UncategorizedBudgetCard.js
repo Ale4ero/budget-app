@@ -8,5 +8,5 @@ export default function UncategorizedBudgetCard(props) {
 
     if (amount === 0) return null
     
-  return <BudgetCard amount={amount} name="Uncategorized" gray {...props}/>
+  return <BudgetCard amount={amount} name="Uncategorized" gray hideButtons {...props}/>
 }

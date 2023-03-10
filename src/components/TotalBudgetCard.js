@@ -25,7 +25,16 @@ export default function TotalBudgetCard() {
 
       const free = max - amount
   
-      if (max === 0) return null
+      if (max === 0) return (
+        <>
+          <div style={{height: "100%"}}>
+            <div className="center">
+              <p>No Data</p>
+            </div>            
+          </div>
+            
+        </>
+      )
       
     return (
       <Card style={{height: "100%"}}>

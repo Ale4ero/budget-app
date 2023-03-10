@@ -35,8 +35,9 @@ export const BudgetsProvider = ({ children }) => {
         })
 
     }
-    function deleteBudget({ id }){
+    function deleteBudget(id){
         //deal with expenses that are now uncategorized
+        console.log("contect deleting: "+id)
         setExpenses(prevExpenses => {
             return prevExpenses.map(expense => {
                 if(expense.budgetId !== id) return expense
@@ -49,6 +50,8 @@ export const BudgetsProvider = ({ children }) => {
         })
         window.location.reload()
     }
+
+
     function deleteExpense({ id }){
         setExpenses(prevExpenses =>{
             return prevExpenses.filter(expense => expense.id !== id)

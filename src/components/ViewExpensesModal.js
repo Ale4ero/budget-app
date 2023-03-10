@@ -4,10 +4,11 @@ import { currencyFormatter } from "../utils"
 
 
 export default function ViewExpensesModal({ budgetId, handleClose}) {
-    const { getBudgetExpenses, budgets, deleteBudget, deleteExpense, setGraphData } = useBudgets()
+    const { getBudgetExpenses, budgets, deleteBudget, deleteExpense} = useBudgets()
 
     const budget = UNCATEGORIZED_BUDGET_ID === budgetId ? {name: "Uncategorized", id: UNCATEGORIZED_BUDGET_ID} : budgets.find(b=> b.id === budgetId)
     const expenses = getBudgetExpenses(budgetId)
+    // console.log("in view expense: "+budget)
 
   return (
     <Modal show={budgetId != null} onHide={handleClose}>
@@ -15,9 +16,10 @@ export default function ViewExpensesModal({ budgetId, handleClose}) {
             <Modal.Title>
                 <Stack direction="horizontal" gap="2">
                     <div>{budget?.name} Expenses</div>
-                    {budgetId != UNCATEGORIZED_BUDGET_ID && (
+                    {/* {budgetId != UNCATEGORIZED_BUDGET_ID && (
                         <Button 
                         onClick={()=>{
+                            console.log("deleting:"+budget)
                             deleteBudget(budget) 
                             handleClose()
                             
@@ -25,7 +27,7 @@ export default function ViewExpensesModal({ budgetId, handleClose}) {
                         variant="outline-danger">
                             Delete Category
                         </Button>
-                    )}
+                    )} */}
                 </Stack>
             </Modal.Title>
         </Modal.Header>
