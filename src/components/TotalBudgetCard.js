@@ -13,8 +13,7 @@
 // }
 
 import { useBudgets } from "../contexts/BudgetContext";
-import BudgetCard from "./BudgetCard";
-import { Card, ProgressBar, Stack, Button } from "react-bootstrap";
+import { Card, ProgressBar } from "react-bootstrap";
 import { currencyFormatter } from "../utils";
 
 export default function TotalBudgetCard() {

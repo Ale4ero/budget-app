@@ -13,6 +13,7 @@ import './App.css';
 import {Chart as chartjs, CategoryScale, LinearScale, BarElement, Tooltip, Legend} from 'chart.js/auto';
 
 import { Bar, Doughnut } from 'react-chartjs-2';
+import ConfirmModal from "./components/ConfirmModal";
 
 chartjs.register(
   CategoryScale, LinearScale, BarElement, Tooltip, Legend
@@ -34,14 +35,25 @@ function App() {
   const [addExpenseModalBudgetId, setAddExpenseModalModalId] = useState()
 
   //getting budgets and expenses from useBudgets context
-  const {budgets, getBudgetExpenses, expenses} = useBudgets()
+  const {budgets, getBudgetExpenses} = useBudgets()
 
+  const [showConfirmModal, setShowConfirmModal] = useState(false)
+
+  const [confirmModalBudgetId, setConfirmModalBudgetId] = useState()
+
+  const [confirmModalBudgetName, setConfirmModalBudgetName] = useState()
  
 
 
   function openAddExpenseModal(budgetId){
     setShowAddExpenseModal(true)
     setAddExpenseModalModalId(budgetId)
+  }
+
+  function openConfirmModal(budgetId, budgetName){
+    setShowConfirmModal(true)
+    setConfirmModalBudgetId(budgetId)
+    setConfirmModalBudgetName(budgetName)
   }
 
 
@@ -85,7 +97,7 @@ function App() {
         {
           label: 'Spent',
           data: catSpending,
-          backgroundColor: ['#4D9DE0', '#EE4266', '#FFD23F', '#23B476', '#F89A3B']
+          backgroundColor: ['#4D9DE0', '#EE4266', '#FFD23F', '#23B476', '#F89A3B', '#7F4ED9']
         }
       ]
     })
@@ -96,7 +108,7 @@ function App() {
         {
           label: 'Spent',
           data: catSpending,
-          backgroundColor: ['#4D9DE0', '#EE4266', '#FFD23F', '#23B476', '#F89A3B'],
+          backgroundColor: ['#4D9DE0', '#EE4266', '#FFD23F', '#23B476', '#F89A3B', '#7F4ED9'],
           borderColor : "rgba(0,0,0,0)"
         },
       ]
@@ -211,6 +223,7 @@ function App() {
                         max={budget.max}
                         onAddExpenseClick={() => openAddExpenseModal(budget.id)}
                         onViewExpensesClick={() => setViewExpensesModalBudgetId(budget.id)}
+                        onDeleteBudgetClick={()=>openConfirmModal(budget.id, budget.name)}
                         budgetId={id}
                  
                       />
@@ -241,6 +254,12 @@ function App() {
         handleClose={()=> setViewExpensesModalBudgetId()} 
       />
       
+      <ConfirmModal
+        show={showConfirmModal}
+        handleClose = {()=> setShowConfirmModal(false)}
+        budgetId={confirmModalBudgetId}
+        budgetName={confirmModalBudgetName}
+      />
 
     </div>
 

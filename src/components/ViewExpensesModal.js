@@ -1,10 +1,10 @@
-import { Modal, Button, Stack } from "react-bootstrap"
+import { Modal, Button, Stack, CloseButton } from "react-bootstrap"
 import { UNCATEGORIZED_BUDGET_ID, useBudgets } from "../contexts/BudgetContext"
 import { currencyFormatter } from "../utils"
 
 
 export default function ViewExpensesModal({ budgetId, handleClose}) {
-    const { getBudgetExpenses, budgets, deleteBudget, deleteExpense} = useBudgets()
+    const { getBudgetExpenses, budgets, deleteExpense} = useBudgets()
 
     const budget = UNCATEGORIZED_BUDGET_ID === budgetId ? {name: "Uncategorized", id: UNCATEGORIZED_BUDGET_ID} : budgets.find(b=> b.id === budgetId)
     const expenses = getBudgetExpenses(budgetId)
@@ -12,7 +12,7 @@ export default function ViewExpensesModal({ budgetId, handleClose}) {
 
   return (
     <Modal show={budgetId != null} onHide={handleClose}>
-        <Modal.Header closeButton>
+        <Modal.Header>
             <Modal.Title>
                 <Stack direction="horizontal" gap="2">
                     <div>{budget?.name} Expenses</div>
@@ -30,6 +30,10 @@ export default function ViewExpensesModal({ budgetId, handleClose}) {
                     )} */}
                 </Stack>
             </Modal.Title>
+            <CloseButton onClick={()=>{
+                handleClose()
+                window.location.reload()
+            }}/>
         </Modal.Header>
         <Modal.Body>
             <Stack direction="vertical" gap="3">

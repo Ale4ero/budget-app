@@ -1,17 +1,11 @@
 import { Card, ProgressBar, Stack, Button } from "react-bootstrap";
 import { currencyFormatter } from "../utils";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faEllipsisVertical} from '@fortawesome/free-solid-svg-icons'
-import { useBudgets, UNCATEGORIZED_BUDGET_ID } from "../contexts/BudgetContext";
 
 
-const optionsIcon = <FontAwesomeIcon icon={faEllipsisVertical}/>
 
-export default function BudgetCard({name, amount, max, gray, hideButtons, onAddExpenseClick, onViewExpensesClick, budgetId}) {
 
-    const {deleteBudget, budgets} = useBudgets()
-    const budget = UNCATEGORIZED_BUDGET_ID === budgetId ? {name: "Uncategorized", id: UNCATEGORIZED_BUDGET_ID} : budgets.find(b=> b.id === budgetId)
-    // console.log("in budget card: "+budget)
+export default function BudgetCard({name, amount, max, gray, hideButtons, onAddExpenseClick, onViewExpensesClick, onDeleteBudgetClick, budgetId}) {
+  
 
     const classNames = []
 
@@ -34,19 +28,7 @@ export default function BudgetCard({name, amount, max, gray, hideButtons, onAddE
                         )}
                         
                         {!hideButtons && (
-                            /* // <i className="optionsIcon">{optionsIcon}</i> */
-                            
-                                // <Button className="deleteButton" onClick={()=>{
-                                //     console.log('tried to delete id:' +budgetId)
-                                //     deleteBudget(budgetId) 
-                                //     // handleClose()
-                                // }}  variant="outline-danger">
-                                //     &times;
-                                // </Button>
-                                <div className="deleteButton" onClick={()=>{
-                                    deleteBudget(budgetId)
-                                }}>&times;</div>
-                            
+                            <div className="deleteButton" onClick={onDeleteBudgetClick}>&times;</div>  
                         )}
                     </div>
                 </Card.Title>

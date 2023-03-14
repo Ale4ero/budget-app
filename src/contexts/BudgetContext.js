@@ -34,6 +34,7 @@ export const BudgetsProvider = ({ children }) => {
             return [...prevBudgets, { id: uuidv4(), name, max }]
         })
 
+
     }
     function deleteBudget(id){
         //deal with expenses that are now uncategorized
@@ -56,7 +57,6 @@ export const BudgetsProvider = ({ children }) => {
         setExpenses(prevExpenses =>{
             return prevExpenses.filter(expense => expense.id !== id)
         })
-        window.location.reload()
     }
     
 
