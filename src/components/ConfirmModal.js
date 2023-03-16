@@ -12,10 +12,11 @@ export default function ConfirmModal({show, handleClose, budgetId, budgetName}) 
   return (
     <>
         <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton> 
+        <Modal.Header> 
           <Modal.Title>{name}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+        <p>All expenses will be moved into "Uncategorized" category.</p>
             <Button className='mx-3' variant="primary" onClick={()=>{
                 deleteBudget(budgetId)
             }}>

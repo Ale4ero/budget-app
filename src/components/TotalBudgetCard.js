@@ -37,8 +37,8 @@ export default function TotalBudgetCard() {
       
     return (
       <Card style={{height: "100%"}}>
-        <Card.Body>
-          <Card.Title className="d-flex justify-content-between align-items-baseline fw-normal mb-3">
+        <Card.Body className="budgetCard">
+          <Card.Title className="d-flex justify-content-between align-items-baseline fw-normal mb-3 budgetCard">
             <div style={{ fontSize: "25px"}} className="me-2 fw-bold ">Total</div>
             <div className="d-flex align-items-baseline">
               {currencyFormatter.format(amount)}                        

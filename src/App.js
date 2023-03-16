@@ -42,6 +42,9 @@ function App() {
   const [confirmModalBudgetId, setConfirmModalBudgetId] = useState()
 
   const [confirmModalBudgetName, setConfirmModalBudgetName] = useState()
+
+
+
  
 
 
@@ -55,10 +58,8 @@ function App() {
     setConfirmModalBudgetId(budgetId)
     setConfirmModalBudgetName(budgetName)
   }
-
-
+ 
   
-
 
 
   const [barChartData, setBarChartData] = useState({
@@ -76,6 +77,9 @@ function App() {
     const catNames= []
     const catSpending = []
     const catMax = []
+    var chartColor = "#666"
+
+    
 
     function getChartData(){
       for(var i = 0; i < budgets.length; i++ ){  
@@ -87,9 +91,23 @@ function App() {
         catSpending[i] = amount
       }
     }
+
+    function checkTheme(){
+      if (document.querySelector("body").getAttribute('data-theme') === 'dark'){
+        console.log("I know the theme is dark")
+        chartColor = "#F2EFF2"
+      }else{
+        console.log("theme is light")
+        chartColor = "#666"
+      }
+    }
+
+    
   
 
     getChartData()
+
+    checkTheme()
 
     setBarChartData({
       labels: catNames,
@@ -134,7 +152,10 @@ function App() {
             drawOnChartArea: false,
             drawTicks: false
           },
-          beginAtZero: true
+          beginAtZero: true,
+          ticks: {
+            color: chartColor
+          }
         },
         y: {
           beginAtZero: true,
@@ -146,7 +167,8 @@ function App() {
                 style: "currency",
                 minimumFractionDigits: 0
               }).format(value)
-            }
+            },
+            color: chartColor
           }
         }
 
@@ -159,7 +181,10 @@ function App() {
       responsive: true,
       plugins: {
         legend: {
-          position: 'top'
+          position: 'top',
+          labels: {
+            color: chartColor
+          }
         }
       },
     })

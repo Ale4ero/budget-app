@@ -1,13 +1,15 @@
 import { Card, ProgressBar, Stack, Button } from "react-bootstrap";
 import { currencyFormatter } from "../utils";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 
-
+const trashIcon = <FontAwesomeIcon icon={faTrashCan} size="xs"/>
 
 
 export default function BudgetCard({name, amount, max, gray, hideButtons, onAddExpenseClick, onViewExpensesClick, onDeleteBudgetClick, budgetId}) {
   
 
-    const classNames = []
+    const classNames = ["budgetCard "]
 
     if(amount > max){
         classNames.push("bg-danger", "bg-opacity-10")
@@ -17,7 +19,7 @@ export default function BudgetCard({name, amount, max, gray, hideButtons, onAddE
     
     return (
         <Card className={classNames.join(" ")}>
-            <Card.Body>
+            <Card.Body className="budgetCard">
                 <Card.Title className="d-flex justify-content-between align-items-baseline fw-normal mb-3">
                     <div className="me-2">{name}</div>
                     <div className="d-flex align-items-baseline">
@@ -28,7 +30,7 @@ export default function BudgetCard({name, amount, max, gray, hideButtons, onAddE
                         )}
                         
                         {!hideButtons && (
-                            <div className="deleteButton" onClick={onDeleteBudgetClick}>&times;</div>  
+                            <div className="deleteButton" onClick={onDeleteBudgetClick}><i>{trashIcon}</i></div>  
                         )}
                     </div>
                 </Card.Title>

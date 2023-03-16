@@ -2,6 +2,7 @@ import "../App.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFile, faHouse, faMoneyBillTransfer } from '@fortawesome/free-solid-svg-icons'
 import { faGraduationCap } from '@fortawesome/free-solid-svg-icons'
+import DarkMode from "../DarkMode/DarkMode"
 
 const houseIcon = <FontAwesomeIcon icon={faHouse} />
 const educationIcon = <FontAwesomeIcon icon={faGraduationCap} />
@@ -23,7 +24,10 @@ export default function Sidebar() {
           <li><a href="#"><i>{currencyIcon}</i><p>Currency</p></a></li>
           <li><a href="#"><i>{fileIcon}</i><p>Files</p></a></li>
         </ul>
-      </div>      
+      </div> 
+      <div className="side-nav-bottom">
+        <DarkMode/> 
+      </div>
     </div>
     </>
   )

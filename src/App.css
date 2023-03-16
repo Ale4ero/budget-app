@@ -10,11 +10,22 @@
     --dark: #332D2D;
     --gray: #515152;
     --light: #FBFBFB;
+    --color: #332D2D;
+    --bodyBg: #FBFBFB;
+    --contBg: #FBFBFB;
+    --red: #EE4266;
+}
+
+[data-theme="dark"] {
+    --bodyBg: #1c2e3b;
+    --contBg: #2a3a46;
+    --color: #FBFBFB;
 }
 
 .App{
     width: 100vw;
     height: 100vh;
+    background-color: var(--bodyBg);
 }
 
 .center{
@@ -56,6 +67,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: var(--contBg);
 }
 
 .donutGraph{
@@ -67,6 +79,7 @@
     padding: 10px;
     display: flex;
     justify-content: center;
+    background-color: var(--contBg);
 }
 
 .dataContainer{
@@ -77,11 +90,13 @@
     height:100%;
     padding: 5px;
     /* display: flexbox; */
+    background-color: var(--contBg);
 }
 
 .totalDetails{
     margin-top: 10px;
     margin: 0 10px;
+    color: var(--color);
 }
 
 
@@ -96,10 +111,18 @@
     /* background-color: #756388; */
 }
 
+.budgetCard{
+    color: var(--color);
+    background-color: var(--bodyBg);
+    border-radius: 5px;
+}
+
 .budgetsContainer {
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     padding: 25px;
+    background-color: var(--contBg);
+    color: var(--color);
 }
 
 .budgetGrid{
@@ -119,6 +142,16 @@
     z-index: 1;
 
     transition: 0.4s;
+}
+
+.side-nav-bottom{
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding-bottom: 70px;
 }
 
 
@@ -188,11 +221,11 @@
 .deleteButton{
     padding: 0;
     /* margin: 0; */
-    width: 20px;
-    height: 20px;
-    border: red solid 1px;
+    width: 25px;
+    height: 25px;
+    border: var(--red) solid 1px;
     border-radius: 5px;
-    color: red;
+    color: var(--red);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -201,10 +234,10 @@
 
 .deleteButton:hover{
     cursor: pointer;
-    background-color: rgba(255, 0, 0, 0.2);
-    scale: 1.3;
+    background-color: var(--red);
+    color:#ffffff;
+    scale: 1.1;
 }
-
 
 
 
