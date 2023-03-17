@@ -7,8 +7,8 @@
 
 :root{
     --primary: #3B71CA;
-    --dark: #332D2D;
-    --gray: #515152;
+    --primaryButton: #0d6efd;
+    --gray: #6c757d;
     --light: #FBFBFB;
     --color: #332D2D;
     --bodyBg: #FBFBFB;
@@ -17,9 +17,11 @@
 }
 
 [data-theme="dark"] {
+    --primaryButton: #4D9DE0;
     --bodyBg: #1c2e3b;
     --contBg: #2a3a46;
     --color: #FBFBFB;
+    --gray: #b6b6b8;
 }
 
 .App{
@@ -37,7 +39,7 @@
 
 
 .graphs{
-    left: 200px;
+    left: 250px;
     right: 0;
     position: absolute;
     display: flex;
@@ -103,7 +105,7 @@
 
 .budgets{
     top: 330px;
-    left: 200px;
+    left: 250px;
     right: 0;
     position: absolute;
     display: flex;
@@ -135,7 +137,7 @@
 
 .side-nav-container{
     background-color: var(--primary);
-    width: 200px;
+    width: 250px;
     height: 100vh;
     position: fixed;
     color: var(--light);   
@@ -230,6 +232,34 @@
     align-items: center;
     justify-content: center;
     margin-left: 5px;
+}
+
+.addExpenseButton{
+    color: var(--primaryButton);
+    border: var(--primaryButton) solid 1px;
+    padding: 5px 8px;
+    border-radius: 5px;
+}
+
+.addExpenseButton:hover{
+    cursor: pointer;
+    color: var(--light);
+    background: var(--primaryButton);
+    transition: all 0.1s ease-in;
+}
+
+.viewExpensesButton{
+    color: var(--gray);
+    border: var(--gray) solid 1px;
+    padding: 5px 8px;
+    border-radius: 5px;
+}
+
+.viewExpensesButton:hover{
+    cursor: pointer;
+    color: var(--light);
+    background: var(--gray);
+    transition: all 0.1s ease-in;
 }
 
 .deleteButton:hover{
