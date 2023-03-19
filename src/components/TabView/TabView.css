@@ -1,0 +1,122 @@
+:root{
+    --primary: #3B71CA;
+    --primaryButton: #0d6efd;
+    --gray: #4f5458;
+    --light: #FBFBFB;
+    --color: #332D2D;
+    --bodyBg: #FBFBFB;
+    --contBg: #FBFBFB;
+    --red: #EE4266;
+    --tabBg: #ccd0d3;
+    --tabHv: #b9bdbe;
+}
+
+[data-theme="dark"] {
+    --primaryButton: #4D9DE0;
+    --bodyBg: #1c2e3b;
+    --contBg: #2a3a46;
+    --color: #FBFBFB;
+    --gray: #b6b6b8;
+    --tabBg: #3e4c57;
+    --tabHv: #495a68;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.TabView{
+    position: absolute;
+    left: 249px;
+    right: 0;
+    color: var(--color);
+    background-color: var(--tabBg);
+}
+
+
+.TabView .body{
+    /* left: 250px; */
+    right: 0;
+}
+
+.TabView .tabs{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.TabView .tabs .tab{
+    position: relative;
+    padding: 5px 3em;
+    /* border-right: 1px solid gray; */
+    z-index: 1;
+    background-color: var(--tabBg);
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12px;
+    transition: background-color 200ms ease-in;
+}
+
+.TabView .tabs .active-tab {
+    position: relative;
+    padding: 5px 3em;
+    /* border-left: 1px solid gray;
+    border-top: 1px solid gray;
+    border-right: 1px solid gray; */
+    background-color: var(--bodyBg);
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    border-bottom: 1px solid var(--bodyBg);
+    /* left: -20px; */
+    z-index: 2;
+}
+
+.tab .borderRight{
+    position: absolute;
+    border-right: 1px solid var(--gray);
+    top: 30%;
+    bottom: 10%;
+    right: 0;
+    z-index: 5;
+}
+
+.TabView .content {
+    position: absolute;
+    padding: 1em;
+    background-color: var(--bodyBg);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 35px;
+    z-index: 0;
+}
+
+.active-tab:hover{
+    cursor: pointer;
+}
+
+.TabView .tabs .tab:hover{
+    background-color: var(--tabHv);
+    cursor: pointer;
+    border-top-right-radius: 12px;
+    border-top-left-radius: 12px;
+    transition: background-color 200ms ease-in;
+}
+
+.tabBtn{
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    color: var(--color);
+    padding: 2px 10px;
+    border-radius: 30px;
+    transition: background-color 200ms ease-in;
+    z-index: 100;
+    margin-left: 2px;
+}
+.tabBtn:hover{
+    cursor: pointer;
+    background-color: var(--tabHv);
+    transition: background-color 200ms ease-in;
+    z-index: 100;
+}

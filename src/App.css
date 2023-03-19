@@ -24,10 +24,20 @@
     --gray: #b6b6b8;
 }
 
-.App{
-    width: 100vw;
-    height: 100vh;
+
+.background{
+    position: absolute;
     background-color: var(--bodyBg);
+    left: 0;
+    right: 0;
+
+} 
+
+.appCenter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
 .center{
@@ -37,14 +47,18 @@
     height: 100%;   
 }
 
-
+.budgetTitle{
+    position: relative;
+    margin: 5px 15px;
+}
 .graphs{
-    left: 250px;
+    left: 0;
     right: 0;
-    position: absolute;
-    display: flex;
+    position: relative;    
+    margin-top: 15px;
+
     /* background-color: #d15ca4; */
-    margin-top: 30px;
+    /* display: none; */
 }
 
 .graphsContainer{
@@ -56,6 +70,7 @@
     /* gap: 1px; */
     height: 300px;
     flex-wrap: wrap;
+
     /* background-color: coral; */
 }
 
@@ -85,13 +100,11 @@
 }
 
 .dataContainer{
-    /* width: 300px; */
     width: 24%;
     box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     height:100%;
     padding: 5px;
-    /* display: flexbox; */
     background-color: var(--contBg);
 }
 
@@ -104,13 +117,15 @@
 
 
 .budgets{
-    top: 330px;
-    left: 250px;
+    top: 0;
+    left: 0;
     right: 0;
-    position: absolute;
-    display: flex;
+    position: relative;
+    display: flex; 
     justify-content: center;
     /* background-color: #756388; */
+
+    /* display: none; */
 }
 
 .budgetCard{
@@ -141,9 +156,10 @@
     height: 100vh;
     position: fixed;
     color: var(--light);   
-    z-index: 1;
-
+    z-index: 5;
     transition: 0.4s;
+
+    /* display: none; */
 }
 
 .side-nav-bottom{

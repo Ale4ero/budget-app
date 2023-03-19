@@ -14,8 +14,8 @@ export default function Sidebar() {
     <>    
     <div className="side-nav-container">      
       <div className="nav-brand">
-        <img src="icons/pocketChangeLogo.svg" alt="nav-logo" class="pcLogo"/>
-        <img src="icons/pocketChangeIcon.svg" alt="nav-icon" class="pcIcon"/>
+        <img src="icons/pocketChangeLogo.svg" alt="nav-logo" className="pcLogo"/>
+        <img src="icons/pocketChangeIcon.svg" alt="nav-icon" className="pcIcon"/>
       </div>
       <div className="nav-menu">
         <ul>
