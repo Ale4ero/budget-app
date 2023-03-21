@@ -33,7 +33,7 @@ export default function BudgetPage({title}) {
     const [addExpenseModalBudgetId, setAddExpenseModalModalId] = useState()
 
     //getting budgets and expenses from useBudgets context
-    const {budgets, getBudgetExpenses} = useBudgets()
+    const {categories, getBudgetExpenses} = useBudgets()
 
     const [showConfirmModal, setShowConfirmModal] = useState(false)
 
@@ -41,9 +41,11 @@ export default function BudgetPage({title}) {
 
     const [confirmModalBudgetName, setConfirmModalBudgetName] = useState()
 
+    const [catNamesArr, setCatNamesArr] = useState([])
 
-
-    
+    const catNames= []
+    const catSpending = []
+    const catMax = []
 
 
     function openAddExpenseModal(budgetId){
@@ -58,7 +60,7 @@ export default function BudgetPage({title}) {
     }
     
     
-
+    console.log(catNamesArr)
 
     const [barChartData, setBarChartData] = useState({
         datasets: []
@@ -72,20 +74,18 @@ export default function BudgetPage({title}) {
 
 
     useEffect(()=>{
-        const catNames= []
-        const catSpending = []
-        const catMax = []
+        
         var chartColor = "#666"
 
         
 
         function getChartData(){
-        for(var i = 0; i < budgets.length; i++ ){  
-            const amount = getBudgetExpenses(budgets[i].id).reduce(
+        for(var i = 0; i < categories.length; i++ ){  
+            const amount = getBudgetExpenses(categories[i].id).reduce(
             (total, expense) => total + expense.amount, 0)
             //storing name of budget in array 'catNames[]'
-            catNames[i] = budgets[i].name 
-            catMax[i] = budgets[i].max 
+            catNames[i] = categories[i].name 
+            catMax[i] = categories[i].max 
             catSpending[i] = amount
         }
         }
@@ -99,6 +99,8 @@ export default function BudgetPage({title}) {
             chartColor = "#666"
         }
         }
+
+        setCatNamesArr(catNames)
 
         
     
@@ -190,9 +192,14 @@ export default function BudgetPage({title}) {
     }, [])
 
   return (
+    
     <div className="background">
+
         
-        <h1 className="budgetTitle">{title} Budgets</h1>
+
+        
+        
+        <h1 className="budgetTitle">{title} Budget</h1>
 
         <div className="graphs">
             <Container className="graphsContainer">
@@ -201,7 +208,17 @@ export default function BudgetPage({title}) {
                 <Bar data={barChartData} options={barChartOptions}></Bar>
                 </div>
                 <div  className="donutGraph">
-                <Doughnut data={donutChartData} options={donutChartOptions}></Doughnut>
+                {catNamesArr.length == 0 ? (
+                    <div style={{height: "100%"}}>
+                        <div className="center">
+                        <h3 className="d-block">No Data</h3>
+                        </div>            
+                    </div>
+                ):(
+                    <>
+                    <Doughnut data={donutChartData} options={donutChartOptions}></Doughnut>
+                    </>
+                )}
                 </div>
                 <div className="dataContainer">
                 <TotalBudgetCard/>
@@ -229,20 +246,20 @@ export default function BudgetPage({title}) {
         {/* style for the div for budget cards */}
         <div className="budgetGrid">
             {/* For each budget create a budget card */}
-            {budgets.map(budget =>{
-                const amount = getBudgetExpenses(budget.id).reduce(
+            {categories.map(category =>{
+                const amount = getBudgetExpenses(category.id).reduce(
                 (total, expense) => total + expense.amount, 0)
-            const id = budget.id
+            const id = category.id
             //  console.log("budget id: "+id)
                 return (
                         <BudgetCard 
-                        key={budget.id}
-                        name={budget.name} 
+                        key={category.id}
+                        name={category.name} 
                         amount={amount} 
-                        max={budget.max}
-                        onAddExpenseClick={() => openAddExpenseModal(budget.id)}
-                        onViewExpensesClick={() => setViewExpensesModalBudgetId(budget.id)}
-                        onDeleteBudgetClick={()=>openConfirmModal(budget.id, budget.name)}
+                        max={category.max}
+                        onAddExpenseClick={() => openAddExpenseModal(category.id)}
+                        onViewExpensesClick={() => setViewExpensesModalBudgetId(category.id)}
+                        onDeleteBudgetClick={()=>openConfirmModal(category.id, category.name)}
                         budgetId={id}
                 
                         />

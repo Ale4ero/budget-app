@@ -6,7 +6,7 @@ export default function AddExpenseModal({ show, handleClose, defaultBudgetId }) 
     const descriptionRef = useRef()
     const amountRef = useRef()
     const budgetIdRef = useRef()
-    const { addExpense, budgets, setGraphData } = useBudgets()
+    const { addExpense, categories, setGraphData } = useBudgets()
 
     function handleSubmit(e){
         addExpense({
@@ -44,9 +44,9 @@ export default function AddExpenseModal({ show, handleClose, defaultBudgetId }) 
                     <Form.Select 
                         defaultValue={defaultBudgetId} ref={budgetIdRef}>
                             <option id={UNCATEGORIZED_BUDGET_ID}> Uncategorized </option>
-                            {budgets.map(budget =>(
-                                <option key={budget.id} value={budget.id}>
-                                    {budget.name}
+                            {categories.map(category =>(
+                                <option key={category.id} value={category.id}>
+                                    {category.name}
                                 </option>
                             ))}
                     </Form.Select>

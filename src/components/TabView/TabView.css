@@ -9,6 +9,8 @@
     --red: #EE4266;
     --tabBg: #ccd0d3;
     --tabHv: #b9bdbe;
+
+    --tabHeight: 40px;
 }
 
 [data-theme="dark"] {
@@ -31,7 +33,6 @@
     left: 249px;
     right: 0;
     color: var(--color);
-    background-color: var(--tabBg);
 }
 
 
@@ -42,33 +43,38 @@
 
 .TabView .tabs{
     position: relative;
-    display: flex;
-    align-items: center;
+    /* align-items: center; */
+    height: var(--tabHeight);
+    width: 100%;
+    background-color: var(--tabBg);
+    z-index: 2;
 }
 
 .TabView .tabs .tab{
     position: relative;
     padding: 5px 3em;
     /* border-right: 1px solid gray; */
-    z-index: 1;
+    z-index: 3;
     background-color: var(--tabBg);
     border-top-right-radius: 12px;
     border-top-left-radius: 12px;
     transition: background-color 200ms ease-in;
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
 }
 
 .TabView .tabs .active-tab {
     position: relative;
     padding: 5px 3em;
-    /* border-left: 1px solid gray;
-    border-top: 1px solid gray;
-    border-right: 1px solid gray; */
     background-color: var(--bodyBg);
     border-top-right-radius: 15px;
     border-top-left-radius: 15px;
     border-bottom: 1px solid var(--bodyBg);
-    /* left: -20px; */
-    z-index: 2;
+    z-index: 4;
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
 }
 
 .tab .borderRight{
@@ -82,17 +88,17 @@
 
 .TabView .content {
     position: absolute;
-    padding: 1em;
     background-color: var(--bodyBg);
     left: 0;
     right: 0;
+    top: var(--tabHeight);
     bottom: 0;
-    top: 35px;
-    z-index: 0;
+    z-index: 3;
 }
 
 .active-tab:hover{
     cursor: pointer;
+    z-index: 100;
 }
 
 .TabView .tabs .tab:hover{
@@ -101,6 +107,7 @@
     border-top-right-radius: 12px;
     border-top-left-radius: 12px;
     transition: background-color 200ms ease-in;
+    z-index: 100;
 }
 
 .tabBtn{
@@ -118,5 +125,5 @@
     cursor: pointer;
     background-color: var(--tabHv);
     transition: background-color 200ms ease-in;
-    z-index: 100;
+    z-index: 2;
 }

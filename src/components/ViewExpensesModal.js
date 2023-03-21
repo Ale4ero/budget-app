@@ -4,9 +4,9 @@ import { currencyFormatter } from "../utils"
 
 
 export default function ViewExpensesModal({ budgetId, handleClose}) {
-    const { getBudgetExpenses, budgets, deleteExpense} = useBudgets()
+    const { getBudgetExpenses, categories, deleteExpense} = useBudgets()
 
-    const budget = UNCATEGORIZED_BUDGET_ID === budgetId ? {name: "Uncategorized", id: UNCATEGORIZED_BUDGET_ID} : budgets.find(b=> b.id === budgetId)
+    const category = UNCATEGORIZED_BUDGET_ID === budgetId ? {name: "Uncategorized", id: UNCATEGORIZED_BUDGET_ID} : categories.find(b=> b.id === budgetId)
     const expenses = getBudgetExpenses(budgetId)
     // console.log("in view expense: "+budget)
 
@@ -15,7 +15,7 @@ export default function ViewExpensesModal({ budgetId, handleClose}) {
         <Modal.Header>
             <Modal.Title>
                 <Stack direction="horizontal" gap="2">
-                    <div>{budget?.name} Expenses</div>
+                    <div>{category?.name} Expenses</div>
                     {/* {budgetId != UNCATEGORIZED_BUDGET_ID && (
                         <Button 
                         onClick={()=>{

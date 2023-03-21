@@ -24,14 +24,30 @@
     --gray: #b6b6b8;
 }
 
+html{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+
 
 .background{
-    position: absolute;
+    position: relative;
     background-color: var(--bodyBg);
+    top: 0;
     left: 0;
     right: 0;
-
+    height: 100vh;
+    z-index: 3;
+    overflow-y: scroll;
+    padding-bottom: 5px;
 } 
+
+.background::-webkit-scrollbar{
+    display: none;
+}
+
 
 .appCenter{
     display: flex;
@@ -49,7 +65,8 @@
 
 .budgetTitle{
     position: relative;
-    margin: 5px 15px;
+    margin-left: 20px;
+    margin-top: 20px;
 }
 .graphs{
     left: 0;
@@ -123,6 +140,7 @@
     position: relative;
     display: flex; 
     justify-content: center;
+    margin-bottom: 40px;
     /* background-color: #756388; */
 
     /* display: none; */

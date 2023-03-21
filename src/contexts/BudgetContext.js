@@ -12,7 +12,7 @@ export function useBudgets(){
 }
 
 export const BudgetsProvider = ({ children }) => {
-    const [budgets, setBudgets] = useLocalStorage("budgets",[])
+    const [categories, setCategories] = useLocalStorage("categories",[])
     const [expenses, setExpenses] = useLocalStorage("expenses",[])
 
     
@@ -20,14 +20,16 @@ export const BudgetsProvider = ({ children }) => {
     function getBudgetExpenses(budgetId){
         return expenses.filter(expense => expense.budgetId === budgetId)
     }
+
     function addExpense({ description, amount, budgetId }){
         setExpenses(prevExpenses =>{
             return [...prevExpenses, { id: uuidv4(), description, amount, budgetId }]
         })
 
     }
+
     function addBudget({name, max}){
-        setBudgets(prevBudgets =>{
+        setCategories(prevBudgets =>{
             if (prevBudgets.find(budget => budget.name === name)){
                 return prevBudgets
             }
@@ -36,6 +38,7 @@ export const BudgetsProvider = ({ children }) => {
 
 
     }
+    
     function deleteBudget(id){
         //deal with expenses that are now uncategorized
         console.log("contect deleting: "+id)
@@ -46,7 +49,7 @@ export const BudgetsProvider = ({ children }) => {
             })
         })
 
-        setBudgets(prevBudgets =>{
+        setCategories(prevBudgets =>{
             return prevBudgets.filter(budget => budget.id !== id)
         })
         window.location.reload()
@@ -61,7 +64,7 @@ export const BudgetsProvider = ({ children }) => {
     
 
     return <BudgetsContext.Provider value={{
-        budgets,
+        categories,
         expenses,
         getBudgetExpenses,
         addExpense,

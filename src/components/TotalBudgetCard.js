@@ -17,10 +17,10 @@ import { Card, ProgressBar } from "react-bootstrap";
 import { currencyFormatter } from "../utils";
 
 export default function TotalBudgetCard() {
-      const { expenses, budgets } = useBudgets()
+      const { expenses, categories } = useBudgets()
       const amount = expenses.reduce((total, expense) => total + expense.amount, 0)
   
-      const max = budgets.reduce((total, budget) => total + budget.max, 0)
+      const max = categories.reduce((total, category) => total + category.max, 0)
 
       const free = max - amount
   
@@ -28,7 +28,7 @@ export default function TotalBudgetCard() {
         <>
           <div style={{height: "100%"}}>
             <div className="center">
-              <p>No Data</p>
+              <h3>No Data</h3>
             </div>            
           </div>
             
