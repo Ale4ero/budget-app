@@ -1,4 +1,4 @@
-import { Card, ProgressBar, Stack, Button } from "react-bootstrap";
+import { Card, ProgressBar, Stack} from "react-bootstrap";
 import { currencyFormatter } from "../utils";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
