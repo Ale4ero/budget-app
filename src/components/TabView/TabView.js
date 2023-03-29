@@ -7,7 +7,7 @@ function TabView({tabs = [], editable = false}) {
     const [activeTabIndex, setActiveTabIndex] = useState(0)
     const[allTabs, setAllTabs] = useState(tabs)
 
-    const NewTabButton = <div className="tabBtn" onClick={()=>createNewTab}>+</div>
+    const NewTabButton = <div className="tabBtn" onClick={()=>createNewTab()}>+</div>
 
     const NewTab = <div>
         <label>New Tab</label>
@@ -15,10 +15,12 @@ function TabView({tabs = [], editable = false}) {
     </div>
 
     const createNewTab = ()=> {
+        console.log("push new tab")
         const newTabs = allTabs
         newTabs.push({name: 'New Tab', content: NewTab})
         setAllTabs(newTabs)
         setActiveTabIndex(newTabs.length - 1)
+        
     }
 
     const activateTab = (index) => {

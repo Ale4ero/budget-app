@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Button, Stack } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
-import AddBudgetModal from "./AddBudgetModal";
+import AddCategoryModal from "./AddCategoryModal";
 import AddExpenseModal from "./AddExpenseModal";
 import ViewExpensesModal from "./ViewExpensesModal";
 import BudgetCard from "./BudgetCard";
@@ -21,7 +21,7 @@ chartjs.register(
 
 export default function BudgetPage({title}) {
     //useState for addCategory button
-    const [showAddBudgetModal, setShowAddBudgetModal] = useState(false)
+    const [showAddCategoryModal, setShowAddCategoryModal] = useState(false)
 
     //useState for addExpense button
     const [showAddExpenseModal, setShowAddExpenseModal] = useState(false)
@@ -41,11 +41,8 @@ export default function BudgetPage({title}) {
 
     const [confirmModalBudgetName, setConfirmModalBudgetName] = useState()
 
-    const [catNamesArr, setCatNamesArr] = useState([])
+    // const [catNamesArr, setCatNamesArr] = useState([])
 
-    const catNames= []
-    const catSpending = []
-    const catMax = []
 
 
     function openAddExpenseModal(budgetId){
@@ -60,7 +57,6 @@ export default function BudgetPage({title}) {
     }
     
     
-    console.log(catNamesArr)
 
     const [barChartData, setBarChartData] = useState({
         datasets: []
@@ -72,14 +68,11 @@ export default function BudgetPage({title}) {
     const [barChartOptions, setBarChartOptions] = useState({})
     const [donutChartOptions, setDonutChartOptions] = useState({})
 
+    const catNames= []
+    const catSpending = []
+    const catMax = []
 
-    useEffect(()=>{
-        
-        var chartColor = "#666"
-
-        
-
-        function getChartData(){
+    function getChartData(){
         for(var i = 0; i < categories.length; i++ ){  
             const amount = getBudgetExpenses(categories[i].id).reduce(
             (total, expense) => total + expense.amount, 0)
@@ -89,6 +82,29 @@ export default function BudgetPage({title}) {
             catSpending[i] = amount
         }
         }
+
+    getChartData()
+
+    useEffect(()=>{
+        
+        var chartColor = "#666"
+        // const catNames= []
+        // const catSpending = []
+        // const catMax = []
+
+
+        
+
+        // function getChartData(){
+        // for(var i = 0; i < categories.length; i++ ){  
+        //     const amount = getBudgetExpenses(categories[i].id).reduce(
+        //     (total, expense) => total + expense.amount, 0)
+        //     //storing name of budget in array 'catNames[]'
+        //     catNames[i] = categories[i].name 
+        //     catMax[i] = categories[i].max 
+        //     catSpending[i] = amount
+        // }
+        // }
 
         function checkTheme(){
         if (document.querySelector("body").getAttribute('data-theme') === 'dark'){
@@ -100,12 +116,12 @@ export default function BudgetPage({title}) {
         }
         }
 
-        setCatNamesArr(catNames)
+        // setCatNamesArr(catNames)
 
         
     
 
-        getChartData()
+        // getChartData()
 
         checkTheme()
 
@@ -208,17 +224,17 @@ export default function BudgetPage({title}) {
                 <Bar data={barChartData} options={barChartOptions}></Bar>
                 </div>
                 <div  className="donutGraph">
-                {catNamesArr.length == 0 ? (
+                {/* {catNamesArr.length === 0 ? (
                     <div style={{height: "100%"}}>
                         <div className="center">
                         <h3 className="d-block">No Data</h3>
                         </div>            
                     </div>
-                ):(
+                ):( */}
                     <>
                     <Doughnut data={donutChartData} options={donutChartOptions}></Doughnut>
                     </>
-                )}
+                {/* )} */}
                 </div>
                 <div className="dataContainer">
                 <TotalBudgetCard/>
@@ -239,7 +255,7 @@ export default function BudgetPage({title}) {
         <h1 className="me-auto">Categories</h1>
 
         {/* Buttons in heading */}
-        <Button variant="primary" onClick={()=> setShowAddBudgetModal(true)}>Add Category</Button>
+        <Button variant="primary" onClick={()=> setShowAddCategoryModal(true)}>Add Category</Button>
         {/* <Button variant="outline-primary" onClick={openAddExpenseModal}>Add Expense</Button> */}
         </Stack> 
 
@@ -276,9 +292,9 @@ export default function BudgetPage({title}) {
 
 
     {/* MODALS */}
-    <AddBudgetModal 
-    show={showAddBudgetModal} 
-    handleClose={()=> setShowAddBudgetModal(false)} 
+    <AddCategoryModal 
+    show={showAddCategoryModal} 
+    handleClose={()=> setShowAddCategoryModal(false)} 
     />
     <AddExpenseModal 
     show={showAddExpenseModal} 

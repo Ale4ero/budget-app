@@ -199,13 +199,18 @@ html{
 }
 
 .pcLogo{
-    width: 170px;
+    background-image: url(./components/icons/pocketChangeLogo.svg);
+    width: 150px;
+    height: 20px;
     padding: 0 6px;
     color: #FBFBFB;
 }
 
 .pcIcon{
     display: none;
+    background-image: url(./components/icons/pocketChangeIcon.svg);
+    width: 36px;
+    height: 36px;
 }
 
 .nav-menu{

@@ -2,7 +2,7 @@ import { Form, Modal, Button } from "react-bootstrap"
 import {useRef} from "react"
 import { useBudgets } from "../contexts/BudgetContext"
 
-export default function AddBudgetModal({ show, handleClose}) {
+export default function AddCategoryModal({ show, handleClose}) {
     const nameRef = useRef()
     const maxRef = useRef()
     const { addBudget} = useBudgets()
