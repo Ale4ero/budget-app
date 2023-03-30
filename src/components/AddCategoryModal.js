@@ -2,15 +2,16 @@ import { Form, Modal, Button } from "react-bootstrap"
 import {useRef} from "react"
 import { useBudgets } from "../contexts/BudgetContext"
 
-export default function AddCategoryModal({ show, handleClose}) {
+export default function AddCategoryModal({ show, handleClose, budget}) {
     const nameRef = useRef()
     const maxRef = useRef()
-    const { addBudget} = useBudgets()
+    const { addCategory} = useBudgets()
 
     function handleSubmit(e){
-        addBudget({
+        addCategory({
             name: nameRef.current.value,
             max: parseFloat(maxRef.current.value), //parse from string to float
+            budget: budget
         })
         handleClose()
     }

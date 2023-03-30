@@ -28,7 +28,7 @@ const DarkMode = () => {
         }else{
             setLightMode()
         } 
-        window.location.reload()
+        // window.location.reload()
     }
     return (
         <div className='dark_mode'>

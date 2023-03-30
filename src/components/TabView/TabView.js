@@ -1,13 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import './TabView.css'
+import AddBudgetModal from '../AddBudgetModal'
+import BudgetPage from "../../components/BudgetPage";
+import {useBudgets} from "../../contexts/BudgetContext";
 
-function TabView({tabs = [], editable = false}) {
+
+function TabView({ editable = false}) {
+
+    const {budgets} = useBudgets()
 
     const [activeTabIndex, setActiveTabIndex] = useState(0)
-    const[allTabs, setAllTabs] = useState(tabs)
+    const[allTabs, setAllTabs] = useState([{}])
 
     const NewTabButton = <div className="tabBtn" onClick={()=>createNewTab()}>+</div>
+
+    const [showAddBudgetModal, setShowAddBudgetModal] = useState(false)
+
+    
 
     const NewTab = <div>
         <label>New Tab</label>
@@ -16,24 +26,42 @@ function TabView({tabs = [], editable = false}) {
 
     const createNewTab = ()=> {
         console.log("push new tab")
-        const newTabs = allTabs
-        newTabs.push({name: 'New Tab', content: NewTab})
-        setAllTabs(newTabs)
-        setActiveTabIndex(newTabs.length - 1)
+        setShowAddBudgetModal(true)
+        // const newTabs = allTabs
+        // const title = budgets[budgets.length-1].name
+        // newTabs.push({name: title, content: <BudgetPage title={title} budget={activeTabIndex}/>})
+        // setAllTabs(newTabs)
+        // setActiveTabIndex(newTabs.length - 1)
         
+    }
+
+    const deleteTab = (index)=> {
+        console.log("delete this tab at index"+index)
+        const newTabs = allTabs
+
     }
 
     const activateTab = (index) => {
         setActiveTabIndex(index)
     }
 
+    useEffect(()=>{
+        console.log(budgets)
+        setAllTabs(budgets)
+        setActiveTabIndex(allTabs.length -1)
+        console.log(activeTabIndex)
+        console.log(allTabs)
+    }, [])
+
+     console.log(allTabs)
+
   return (
     <div className='TabView'>
       {/* {title && <h4 className='title'>{title}</h4>} */}
       <div className="body">
-        {allTabs.length === 0 ? (
+        {budgets.length === 0 ? (
             <div className="tabs">
-                <div>No Tabs</div>
+                <div></div>
                 {editable ? NewTabButton : null}
             </div>
             
@@ -47,17 +75,23 @@ function TabView({tabs = [], editable = false}) {
                             onClick = {()=> activateTab(index)}
                         >
                             {tab.name}
+                            <div className="deleteTab" onClick={()=>deleteTab(index)}>&times;</div>
                             <div className='borderRight'></div>
                         </label>
                     ))}
                     {editable ? NewTabButton : null}
                 </div>
                 <div className="content">
-                    {allTabs[activeTabIndex].content}
+                    <BudgetPage title={budgets[activeTabIndex].name}/>
+                    <AddBudgetModal 
+                        show={showAddBudgetModal} 
+                        handleClose={()=> setShowAddBudgetModal(false)} 
+                    />
                 </div>
             </div>
         )}
       </div>
+        
     </div>
   )
 }

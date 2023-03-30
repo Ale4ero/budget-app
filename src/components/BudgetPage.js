@@ -19,7 +19,7 @@ chartjs.register(
   CategoryScale, LinearScale, BarElement, Tooltip, Legend
 )
 
-export default function BudgetPage({title}) {
+export default function BudgetPage({title, budgetIndex}) {
     //useState for addCategory button
     const [showAddCategoryModal, setShowAddCategoryModal] = useState(false)
 
@@ -32,8 +32,6 @@ export default function BudgetPage({title}) {
     //useState for addExpense button FOR SPECIFIC BUDGET
     const [addExpenseModalBudgetId, setAddExpenseModalModalId] = useState()
 
-    //getting budgets and expenses from useBudgets context
-    const {categories, getBudgetExpenses} = useBudgets()
 
     const [showConfirmModal, setShowConfirmModal] = useState(false)
 
@@ -44,16 +42,19 @@ export default function BudgetPage({title}) {
     // const [catNamesArr, setCatNamesArr] = useState([])
 
 
+    //getting budgets, categroies and expenses from useBudgets context
+    const {categories, getBudgetExpenses, budgets} = useBudgets()
 
-    function openAddExpenseModal(budgetId){
+
+    function openAddExpenseModal(categoryId){
         setShowAddExpenseModal(true)
-        setAddExpenseModalModalId(budgetId)
+        setAddExpenseModalModalId(categoryId)
     }
 
-    function openConfirmModal(budgetId, budgetName){
+    function openConfirmModal(categoryId, categoryName){
         setShowConfirmModal(true)
-        setConfirmModalBudgetId(budgetId)
-        setConfirmModalBudgetName(budgetName)
+        setConfirmModalBudgetId(categoryId)
+        setConfirmModalBudgetName(categoryName)
     }
     
     
@@ -68,20 +69,26 @@ export default function BudgetPage({title}) {
     const [barChartOptions, setBarChartOptions] = useState({})
     const [donutChartOptions, setDonutChartOptions] = useState({})
 
+    
     const catNames= []
     const catSpending = []
     const catMax = []
+    
 
     function getChartData(){
         for(var i = 0; i < categories.length; i++ ){  
-            const amount = getBudgetExpenses(categories[i].id).reduce(
-            (total, expense) => total + expense.amount, 0)
-            //storing name of budget in array 'catNames[]'
-            catNames[i] = categories[i].name 
-            catMax[i] = categories[i].max 
-            catSpending[i] = amount
+            if(categories[i].budget === title){
+                const amount = getBudgetExpenses(categories[i].id).reduce(
+                    (total, expense) => total + expense.amount, 0)
+                    //storing name of budget in array 'catNames[]'
+                    catNames[i] = categories[i].name 
+                    catMax[i] = categories[i].max 
+                    catSpending[i] = amount
+
+            }            
         }
-        }
+    }
+    
 
     getChartData()
 
@@ -92,19 +99,9 @@ export default function BudgetPage({title}) {
         // const catSpending = []
         // const catMax = []
 
-
         
 
-        // function getChartData(){
-        // for(var i = 0; i < categories.length; i++ ){  
-        //     const amount = getBudgetExpenses(categories[i].id).reduce(
-        //     (total, expense) => total + expense.amount, 0)
-        //     //storing name of budget in array 'catNames[]'
-        //     catNames[i] = categories[i].name 
-        //     catMax[i] = categories[i].max 
-        //     catSpending[i] = amount
-        // }
-        // }
+        
 
         function checkTheme(){
         if (document.querySelector("body").getAttribute('data-theme') === 'dark'){
@@ -207,6 +204,8 @@ export default function BudgetPage({title}) {
 
     }, [])
 
+    console.log("Budgets: " + {budgets})
+
   return (
     
     <div className="background">
@@ -224,17 +223,9 @@ export default function BudgetPage({title}) {
                 <Bar data={barChartData} options={barChartOptions}></Bar>
                 </div>
                 <div  className="donutGraph">
-                {/* {catNamesArr.length === 0 ? (
-                    <div style={{height: "100%"}}>
-                        <div className="center">
-                        <h3 className="d-block">No Data</h3>
-                        </div>            
-                    </div>
-                ):( */}
                     <>
                     <Doughnut data={donutChartData} options={donutChartOptions}></Doughnut>
                     </>
-                {/* )} */}
                 </div>
                 <div className="dataContainer">
                 <TotalBudgetCard/>
@@ -267,7 +258,8 @@ export default function BudgetPage({title}) {
                 (total, expense) => total + expense.amount, 0)
             const id = category.id
             //  console.log("budget id: "+id)
-                return (
+                if(category.budget === title){
+                    return (
                         <BudgetCard 
                         key={category.id}
                         name={category.name} 
@@ -279,7 +271,9 @@ export default function BudgetPage({title}) {
                         budgetId={id}
                 
                         />
-                        )   
+                        ) 
+                }
+                  
             })}
 
             {/* add uncategorized and total budget cards */}
@@ -294,7 +288,8 @@ export default function BudgetPage({title}) {
     {/* MODALS */}
     <AddCategoryModal 
     show={showAddCategoryModal} 
-    handleClose={()=> setShowAddCategoryModal(false)} 
+    handleClose={()=> setShowAddCategoryModal(false)}
+    budget={title}
     />
     <AddExpenseModal 
     show={showAddExpenseModal} 

@@ -6,7 +6,7 @@ import { useBudgets} from '../contexts/BudgetContext'
 
 export default function ConfirmModal({show, handleClose, budgetId, budgetName}) {
 
-    const {deleteBudget} = useBudgets()
+    const {deleteCategory} = useBudgets()
     const name = "Delete "+ budgetName +" Budget?"
 
   return (
@@ -18,7 +18,7 @@ export default function ConfirmModal({show, handleClose, budgetId, budgetName}) 
         <Modal.Body>
         <p>All expenses will be moved into "Uncategorized" category.</p>
             <Button className='mx-3' variant="primary" onClick={()=>{
-                deleteBudget(budgetId)
+                deleteCategory(budgetId)
             }}>
             Yes
             </Button>

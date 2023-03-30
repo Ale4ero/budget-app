@@ -1,6 +1,7 @@
 import React, { useContext} from "react"
 import {v4 as uuidv4} from 'uuid'
 import useLocalStorage from "../hooks/useLocalStorage"
+import BudgetPage from "../components/BudgetPage"
 
 
 const BudgetsContext = React.createContext()
@@ -14,6 +15,7 @@ export function useBudgets(){
 export const BudgetsProvider = ({ children }) => {
     const [categories, setCategories] = useLocalStorage("categories",[])
     const [expenses, setExpenses] = useLocalStorage("expenses",[])
+    const [budgets, setBudgets] = useLocalStorage("budgets",[])
 
     
     
@@ -28,18 +30,24 @@ export const BudgetsProvider = ({ children }) => {
 
     }
 
-    function addBudget({name, max}){
-        setCategories(prevBudgets =>{
-            if (prevBudgets.find(budget => budget.name === name)){
-                return prevBudgets
+    function addCategory({name, max, budget}){
+        setCategories(prevCategories =>{
+            if (prevCategories.find(category => category.name === name)){
+                return prevCategories
             }
-            return [...prevBudgets, { id: uuidv4(), name, max }]
+            return [...prevCategories, { id: uuidv4(), name, max, budget }]
         })
 
 
     }
+
+    function addBudget({name}){
+        setBudgets(prevBudgets =>{
+            return [...prevBudgets, {id: uuidv4(), name}]
+        })
+    }
     
-    function deleteBudget(id){
+    function deleteCategory(id){
         //deal with expenses that are now uncategorized
         console.log("contect deleting: "+id)
         setExpenses(prevExpenses => {
@@ -66,10 +74,12 @@ export const BudgetsProvider = ({ children }) => {
     return <BudgetsContext.Provider value={{
         categories,
         expenses,
+        budgets,
         getBudgetExpenses,
         addExpense,
-        addBudget,
-        deleteBudget,
+        addCategory,
+        deleteCategory,
         deleteExpense,
+        addBudget
     }}> {children} </BudgetsContext.Provider>
 }

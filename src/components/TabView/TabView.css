@@ -127,3 +127,21 @@
     transition: background-color 200ms ease-in;
     z-index: 2;
 }
+
+.deleteTab{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    right: 10px;
+    color: var(--color);
+    height: 15px;
+    width: 15px;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+.deleteTab:hover{
+    background-color: #8e989b;
+    transition: background-color 200ms ease-in;
+}

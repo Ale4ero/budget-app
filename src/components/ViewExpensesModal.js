@@ -16,18 +16,6 @@ export default function ViewExpensesModal({ budgetId, handleClose}) {
             <Modal.Title>
                 <Stack direction="horizontal" gap="2">
                     <div>{category?.name} Expenses</div>
-                    {/* {budgetId != UNCATEGORIZED_BUDGET_ID && (
-                        <Button 
-                        onClick={()=>{
-                            console.log("deleting:"+budget)
-                            deleteBudget(budget) 
-                            handleClose()
-                            
-                        }} 
-                        variant="outline-danger">
-                            Delete Category
-                        </Button>
-                    )} */}
                 </Stack>
             </Modal.Title>
             <CloseButton onClick={()=>{
