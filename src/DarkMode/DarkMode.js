@@ -2,21 +2,30 @@ import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons'
 import "./DarkMode.css";
+import { useBudgets } from "../contexts/BudgetContext";
 
 const sunIcon = <FontAwesomeIcon  icon={faSun}/>
 const moonIcon = <FontAwesomeIcon  icon={faMoon}/>
 
+
+
 const DarkMode = () => {
+
+    const {setTheme, activeTheme} = useBudgets()
+
     const setDarkMode = () => {
-        document.querySelector("body").setAttribute('data-theme', 'dark')
-        localStorage.setItem("selectedTheme", "dark")
+        // document.querySelector("body").setAttribute('data-theme', 'dark')
+        setTheme('dark')
+        // localStorage.setItem("selectedTheme", "dark")
     }
     const setLightMode = () => {
-        document.querySelector("body").setAttribute('data-theme', 'light')
-        localStorage.setItem("selectedTheme", "light")
+        // document.querySelector("body").setAttribute('data-theme', 'light')
+        // localStorage.setItem("selectedTheme", "light")
+        setTheme('light')
     }
 
-    const selectedTheme = localStorage.getItem("selectedTheme")
+    // const selectedTheme = localStorage.getItem("selectedTheme")
+    const selectedTheme = activeTheme
 
     if(selectedTheme === "dark"){
         setDarkMode()

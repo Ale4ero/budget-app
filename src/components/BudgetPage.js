@@ -19,7 +19,7 @@ chartjs.register(
   CategoryScale, LinearScale, BarElement, Tooltip, Legend
 )
 
-export default function BudgetPage({title, budgetIndex}) {
+export default function BudgetPage({title}) {
     //useState for addCategory button
     const [showAddCategoryModal, setShowAddCategoryModal] = useState(false)
 
@@ -43,7 +43,13 @@ export default function BudgetPage({title, budgetIndex}) {
 
 
     //getting budgets, categroies and expenses from useBudgets context
-    const {categories, getBudgetExpenses, budgets} = useBudgets()
+    const {categories, getBudgetExpenses, activeTabIndex, activeTheme} = useBudgets()
+
+    
+    
+
+
+    
 
 
     function openAddExpenseModal(categoryId){
@@ -69,46 +75,67 @@ export default function BudgetPage({title, budgetIndex}) {
     const [barChartOptions, setBarChartOptions] = useState({})
     const [donutChartOptions, setDonutChartOptions] = useState({})
 
-    
-    const catNames= []
-    const catSpending = []
-    const catMax = []
-    
 
-    function getChartData(){
-        for(var i = 0; i < categories.length; i++ ){  
-            if(categories[i].budget === title){
-                const amount = getBudgetExpenses(categories[i].id).reduce(
-                    (total, expense) => total + expense.amount, 0)
-                    //storing name of budget in array 'catNames[]'
-                    catNames[i] = categories[i].name 
-                    catMax[i] = categories[i].max 
-                    catSpending[i] = amount
-
-            }            
-        }
-    }
+    
+    let catNames= []
+    let catSpending = []
+    let catMax = []
     
 
-    getChartData()
+    console.log('IN BUDGET:' + title)
+    
+    console.log('WE ARE IN INDEX: '+activeTabIndex)
+
+    console.log('THEME IS: '+ activeTheme)
+
+
 
     useEffect(()=>{
+    
+
+        console.log("use Effect ran")
         
         var chartColor = "#666"
         // const catNames= []
         // const catSpending = []
         // const catMax = []
 
+
+   
+
+        
+        // getChartData()
+        function getChartData(){
+            console.log(title)
+            catNames.length = 0
+            catSpending.length = 0
+            catMax.length = 0
+            var j = 0
+            for(var i = 0; i < categories.length; i++ ){  
+                if(categories[i].budget === title){
+                    
+                    const amount = getBudgetExpenses(categories[i].id).reduce(
+                        (total, expense) => total + expense.amount, 0)
+                        //storing name of budget in array 'catNames[]'
+                    catNames[j] = categories[i].name 
+                    catMax[j] = categories[i].max 
+                    catSpending[j] = amount
+                    j++
+                                 
+                }        
+            }
+        }
+        
+    
+        getChartData()
         
 
         
 
         function checkTheme(){
         if (document.querySelector("body").getAttribute('data-theme') === 'dark'){
-            console.log("I know the theme is dark")
             chartColor = "#F2EFF2"
         }else{
-            console.log("theme is light")
             chartColor = "#666"
         }
         }
@@ -118,7 +145,7 @@ export default function BudgetPage({title, budgetIndex}) {
         
     
 
-        // getChartData()
+        
 
         checkTheme()
 
@@ -129,9 +156,10 @@ export default function BudgetPage({title, budgetIndex}) {
             label: 'Spent',
             data: catSpending,
             backgroundColor: ['#4D9DE0', '#EE4266', '#FFD23F', '#23B476', '#F89A3B', '#7F4ED9']
-            }
+            },
         ]
         })
+        
 
         setDonutChartData({
         labels: catNames,
@@ -201,10 +229,11 @@ export default function BudgetPage({title, budgetIndex}) {
             }
         },
         })
+    
 
-    }, [])
+    }, [activeTabIndex, activeTheme])
 
-    console.log("Budgets: " + {budgets})
+
 
   return (
     
@@ -214,7 +243,7 @@ export default function BudgetPage({title, budgetIndex}) {
 
         
         
-        <h1 className="budgetTitle">{title} Budget</h1>
+        <h1 className="budgetTitle fw-bold" >{title} Budget</h1>
 
         <div className="graphs">
             <Container className="graphsContainer">
@@ -223,9 +252,7 @@ export default function BudgetPage({title, budgetIndex}) {
                 <Bar data={barChartData} options={barChartOptions}></Bar>
                 </div>
                 <div  className="donutGraph">
-                    <>
-                    <Doughnut data={donutChartData} options={donutChartOptions}></Doughnut>
-                    </>
+                <Doughnut data={donutChartData} options={donutChartOptions}></Doughnut>
                 </div>
                 <div className="dataContainer">
                 <TotalBudgetCard/>

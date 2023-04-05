@@ -6,7 +6,7 @@ export default function AddExpenseModal({ show, handleClose, defaultBudgetId }) 
     const descriptionRef = useRef()
     const amountRef = useRef()
     const budgetIdRef = useRef()
-    const { addExpense, categories, setGraphData } = useBudgets()
+    const { addExpense, categories} = useBudgets()
 
     function handleSubmit(e){
         addExpense({
@@ -14,7 +14,7 @@ export default function AddExpenseModal({ show, handleClose, defaultBudgetId }) 
             amount: parseFloat(amountRef.current.value), //parse from string to float
             budgetId: budgetIdRef.current.value
         })
-        setGraphData()
+
         handleClose()
     }
 

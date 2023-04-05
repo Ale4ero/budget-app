@@ -11,6 +11,7 @@ export default function AddBudgetModal({ show, handleClose}) {
             name: nameRef.current.value
         })
         handleClose()
+        console.log("addded budget")
     }
 
   return (
