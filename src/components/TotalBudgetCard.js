@@ -16,11 +16,26 @@ import { useBudgets } from "../contexts/BudgetContext";
 import { Card, ProgressBar } from "react-bootstrap";
 import { currencyFormatter } from "../utils";
 
-export default function TotalBudgetCard() {
+export default function TotalBudgetCard({title}) {
       const { expenses, categories } = useBudgets()
-      const amount = expenses.reduce((total, expense) => total + expense.amount, 0)
+      const pageExpenses = []
+      const pageCategories = []
+
+      expenses.map(expense =>{
+        if(expense.budget == title){
+          pageExpenses.push(expense)
+        }
+      })
+
+      categories.map(category =>{
+        if(category.budget == title){
+          pageCategories.push(category)
+        }
+      })
+      
+      const amount = pageExpenses.reduce((total, pageExpenses) => total + pageExpenses.amount, 0)
   
-      const max = categories.reduce((total, category) => total + category.max, 0)
+      const max = pageCategories.reduce((total, pageCategories) => total + pageCategories.max, 0)
 
       const free = max - amount
   

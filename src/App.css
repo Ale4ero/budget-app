@@ -249,6 +249,14 @@ html{
     transition: 0.2s;
 }
 
+.nav-menu a.active{
+    background-color: var(--light);
+    color: #3B71CA;
+    padding: 8px 30px 8px 8px;
+    border-radius: 6px;
+    box-shadow: 3px 3px 10px rgba(255, 255, 255, 0.3);
+}
+
 .optionsIcon{
     margin-left: 10px;
     padding: 0 5px;
@@ -306,6 +314,44 @@ html{
     background-color: var(--red);
     color:#ffffff;
     scale: 1.1;
+}
+
+
+/* Eductaion Page*/
+.pageContent{
+    margin-top: 10px;
+    color: var(--color);
+    top: 0;
+    left: 249px;
+    right: 0;
+    position: absolute;
+    display: flex; 
+    /* justify-content: center; */
+}
+
+.pageTitle{
+    position: relative;
+    margin-left: 10px;
+}
+
+.eduContainer{
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 50px 50px;
+    background-color: var(--contBg);
+    color: var(--color);
+    position: absolute;
+    top: 70px;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.creditImg{
+    float: right;
 }
 
 

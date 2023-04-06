@@ -37,34 +37,40 @@ function TabView({ editable = false}) {
     }
 
     const deleteTab = (index)=> {
-        console.log("delete this tab at index "+index)
-        const newTabs = allTabs
-
+        if(allTabs.length < 2){
+            alert("You must have one active tab!")
+        }else{
+            console.log("delete this tab at index "+index)
+            const newTabs = allTabs
+            newTabs.splice(index, 1)
+            console.log("newTabs: "+newTabs)
+            setAllTabs(newTabs)
+        }
+        
     }
 
     const activateTab = (index) => {
         index = index || 0
-        console.log("activate tab to index "+ index)
+        // console.log("activate tab to index "+ index)
         setActiveTabIndex(index) //local
         setTabIndex(index) //useBudgets
     }
 
     useEffect(()=>{
-        console.log('tab use effect at index'+activeTabIndex)
+        // console.log('tab use effect at index'+activeTabIndex)
         setAllTabs(budgets)
         if (activeTabIndex == -1){
-            console.log('since active tab is null set it to '+ budgets.length - 1)
+            // console.log('since active tab is null set it to '+ budgets.length - 1)
             activateTab(budgets.length - 1)
         }else{
             setActiveTabIndex(localStorage.getItem("currentIndex"))
-            console.log("reload save tab at index"+ activeTabIndex)
+            // console.log("reload save tab at index"+ activeTabIndex)
             activateTab(activeTabIndex)
-            // activateTab(budgets.length - 1)
         }
         
         
-        console.log("the active tab is: "+activeTabIndex)
-    }, [])
+        // console.log("the active tab is: "+activeTabIndex)
+    }, [allTabs])
 
 
   return (

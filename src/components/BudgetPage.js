@@ -82,31 +82,21 @@ export default function BudgetPage({title}) {
     let catMax = []
     
 
-    console.log('IN BUDGET:' + title)
+    // console.log('IN BUDGET:' + title)
     
-    console.log('WE ARE IN INDEX: '+activeTabIndex)
+    // console.log('WE ARE IN INDEX: '+activeTabIndex)
 
-    console.log('THEME IS: '+ activeTheme)
+    // console.log('THEME IS: '+ activeTheme)
 
 
 
     useEffect(()=>{
     
-
-        console.log("use Effect ran")
         
-        var chartColor = "#666"
-        // const catNames= []
-        // const catSpending = []
-        // const catMax = []
+        var chartColor = "#666"   
 
-
-   
-
-        
-        // getChartData()
+    
         function getChartData(){
-            console.log(title)
             catNames.length = 0
             catSpending.length = 0
             catMax.length = 0
@@ -133,18 +123,12 @@ export default function BudgetPage({title}) {
         
 
         function checkTheme(){
-        if (document.querySelector("body").getAttribute('data-theme') === 'dark'){
-            chartColor = "#F2EFF2"
-        }else{
-            chartColor = "#666"
-        }
-        }
-
-        // setCatNamesArr(catNames)
-
-        
-    
-
+            if (document.querySelector("body").getAttribute('data-theme') === 'dark'){
+                chartColor = "#F2EFF2"
+            }else{
+                chartColor = "#666"
+            }
+        }      
         
 
         checkTheme()
@@ -255,7 +239,7 @@ export default function BudgetPage({title}) {
                 <Doughnut data={donutChartData} options={donutChartOptions}></Doughnut>
                 </div>
                 <div className="dataContainer">
-                <TotalBudgetCard/>
+                <TotalBudgetCard title={title}/>
                 </div>                   
             </Container>
 
@@ -283,7 +267,7 @@ export default function BudgetPage({title}) {
             {categories.map(category =>{
                 const amount = getBudgetExpenses(category.id).reduce(
                 (total, expense) => total + expense.amount, 0)
-            const id = category.id
+                const id = category.id
             //  console.log("budget id: "+id)
                 if(category.budget === title){
                     return (
@@ -322,6 +306,7 @@ export default function BudgetPage({title}) {
     show={showAddExpenseModal} 
     defaultBudgetId={addExpenseModalBudgetId}
     handleClose={()=> setShowAddExpenseModal(false)} 
+    budget={title}
     />
     <ViewExpensesModal 
     budgetId={viewExpensesModalBudgetId}
