@@ -349,11 +349,104 @@ html{
     justify-content: center;
 }
 
+.currencyContainer{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    padding: 0;
+    margin: 0;
+    width: 20vw;
+    height: 95vh;
+    /* background-color: red; */
+}
+
+.widgetContainer{
+    background-color: var(--contBg);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 50px;
+    
+    align-items: center;
+    justify-content: center;
+}
+
+.input{
+    border: var(--color) 2px solid;
+    border-radius: 5px;
+    padding: .25rem;
+    width: 7em;
+}
+
+.select{
+    margin-left: 5px;
+    border: var(--color) 2px solid;
+    border-radius: 5px;
+}
 
 .creditImg{
     float: right;
+    background-color: #FBFBFB;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 5px 0;
 }
 
+.fileContainer{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 95vh;
+}
+
+.fileBox{
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 50px 50px;
+    background-color: var(--contBg);
+    color: var(--color);
+    width: 300px;
+    height: 300px;
+    display: flex;
+    position: relative;
+    justify-content: center;
+}
+
+.fileBox:hover{
+    scale: 1.2;
+    transition: all .2s ease-in-out;
+}
+
+
+.fileText{
+    position: absolute;   
+    margin-top: 60px; 
+    font-size: 20px;
+}
+
+.fileBtn{
+    position: absolute;
+    margin-top: 160px;
+    padding: 5px 20px;
+    border: var(--primaryButton) solid 1px;
+    border-radius: 10px;
+    color: var(--primaryButton);
+    text-decoration: none;
+}
+
+.fileBtn:hover{
+    cursor: pointer;
+    background-color: var(--primaryButton);
+    color: #ffffff;
+}
 
 
 @media only screen and (max-width: 1200px){

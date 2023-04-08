@@ -13,22 +13,12 @@ export default function Education() {
                     <h1>Credit Card</h1>
                     <div className='mx-3 my-4'>
                     <img src="https://consumer.ftc.gov/sites/www.consumer.ftc.gov/files/ftc-creditquestions-illustrations_f-01.png" className='w-25 creditImg' alt="growCredit"/>
-                        <h4>Understanding Credit</h4>
-        
-                            
-                            
+                        <h4>Understanding Credit</h4>        
                             <p>Credit is the ability to borrow money or access goods or services with the understanding 
                             that you'll pay later. Most of the time there is a charge for borrowing the money that 
                             comes in the form of fees and/or interest.</p>
-
-                           
-                         
-                                
-                            
-
-                        
-                        
-                        <p>Your ability to gain credit relies on your credit score and/or credit history. A credit 
+           
+                            <p>Your ability to gain credit relies on your credit score and/or credit history. A credit 
                             score is a numerical value that represents your credit behavior. This number ranges from 
                             300 to 850. Your score is based on your payment history, ration of debt to available credit, 
                             length of credit history, types of credit used and recent credit searches.</p>
