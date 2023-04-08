@@ -145,3 +145,10 @@
     background-color: #8e989b;
     transition: background-color 200ms ease-in;
 }
+
+@media only screen and (max-width: 600px){
+    .TabView{
+        left: 50px;
+        right: 0;
+    }
+}

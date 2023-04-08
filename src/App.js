@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Education from "./components/Education";
 import Files from "./components/Files";
 import Currency from "./components/Currency";
+import NotFound from "./components/NotFound";
 
 const firstPage = <BudgetPage title="March"/> 
 const secondPage = <BudgetPage title="April"/>
@@ -48,6 +49,8 @@ function App() {
           <Route path="/education" element={<Education/>}/>
           <Route path="/files" element={<Files/>}/>
           <Route path="/currency" element={<Currency/>}/>
+          <Route path="*" element={<NotFound/>}/>
+          
         
            
 
