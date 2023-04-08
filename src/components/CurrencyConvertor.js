@@ -44,12 +44,13 @@ export default function CurrencyConvertor() {
         fromAmount = amount / exchangeRate
     }
 
-    useEffect(() => {
-        setFromCurrency(currencyOptions[0])
-        setToCurrency(currencyOptions[1])
-        setExchangeRate(currencyOptions[0].rates.EUR)
     
-    }, [])
+    // useEffect(() => {
+    //     setFromCurrency(currencyOptions[0])
+    //     setToCurrency(currencyOptions[1])
+    //     setExchangeRate(currencyOptions[0].rates.EUR)
+    //     //eslint-disable-next-line react-hooks/exhaustive-deps
+    // }, [])
 
     useEffect(() => {
         

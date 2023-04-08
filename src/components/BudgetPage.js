@@ -1,4 +1,4 @@
-import { useState, useEffect} from "react";
+import { useState, useEffect, useRef} from "react";
 import { Button, Stack } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import AddCategoryModal from "./AddCategoryModal";
@@ -47,7 +47,7 @@ export default function BudgetPage({title}) {
 
     
     
-
+    const tempBudgetAppFunc = useRef()
 
     
 
@@ -78,9 +78,9 @@ export default function BudgetPage({title}) {
 
     
     // let catNames= useMemo(() => []) 
-    let catNames = []
-    let catSpending = []
-    let catMax = []
+    let catNames = useRef([])
+    let catSpending =  useRef([])
+    let catMax =  useRef([])
     
 
     // console.log('IN BUDGET:' + title)
@@ -89,15 +89,13 @@ export default function BudgetPage({title}) {
 
     // console.log('THEME IS: '+ activeTheme)
 
-
-
-    useEffect(()=>{
-    
-        
-
+    const budgetAppFunc = ()=>{
         var chartColor = "#666"   
 
-    
+        catNames = []
+        catSpending = []
+        catMax.current = []
+        
         function getChartData(){
             catNames.length = 0
             catSpending.length = 0
@@ -117,7 +115,6 @@ export default function BudgetPage({title}) {
                 }        
             }
         }
-        
     
         getChartData()
         
@@ -215,6 +212,16 @@ export default function BudgetPage({title}) {
             }
         },
         })
+    }
+
+    tempBudgetAppFunc.current = budgetAppFunc
+
+
+    useEffect(()=>{
+    
+        
+        tempBudgetAppFunc.current()
+        
     
 
     }, [activeTabIndex, activeTheme])

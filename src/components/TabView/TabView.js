@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef } from 'react'
 import { useState } from 'react'
 import './TabView.css'
 import AddBudgetModal from '../AddBudgetModal'
@@ -18,7 +18,7 @@ function TabView({ editable = false}) {
 
     const [showAddBudgetModal, setShowAddBudgetModal] = useState(false)
 
-
+    const tempTabFunc = useRef()
     
 
 
@@ -53,8 +53,7 @@ function TabView({ editable = false}) {
         setTabIndex(index) //useBudgets
     }
 
-    useEffect(()=>{
-        // console.log('tab use effect at index'+activeTabIndex)
+    const tabFunction = ()=>{
         setAllTabs(budgets)
         if (activeTabIndex === -1){
             // console.log('since active tab is null set it to '+ budgets.length - 1)
@@ -63,7 +62,15 @@ function TabView({ editable = false}) {
             setActiveTabIndex(localStorage.getItem("currentIndex"))
             // console.log("reload save tab at index"+ activeTabIndex)
             activateTab(activeTabIndex)
+            
         }
+    }
+
+    tempTabFunc.current = tabFunction
+
+    useEffect(()=>{
+        // console.log('tab use effect at index'+activeTabIndex)
+        tempTabFunc.current()
         
         
         // console.log("the active tab is: "+activeTabIndex)
