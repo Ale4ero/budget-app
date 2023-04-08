@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Container } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 import '../App.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFilePdf } from '@fortawesome/free-solid-svg-icons'
@@ -18,17 +18,17 @@ export default function Files() {
                 {/* <div>{pdfIcon}</div> */}
                 <div className='fileTitle fw-bold display-4 position-absolute '>1040</div>
                 <div className='fileText'>Form</div>
-                <a className="fileBtn" href='https://www.irs.gov/pub/irs-pdf/f1040.pdf' target="_blank">{pdfIcon} Download</a>
+                <a className="fileBtn" href='https://www.irs.gov/pub/irs-pdf/f1040.pdf' target="_blank" rel="noreferrer">{pdfIcon} Download</a>
               </div>
               <div className='fileBox'>
                 <div className='fileTitle fw-bold display-4 position-absolute '>W-2</div>
                 <div className='fileText'>Form</div>
-                <a className="fileBtn" href='https://www.irs.gov/pub/irs-pdf/fw2.pdf' target="_blank">{pdfIcon} Download</a>
+                <a className="fileBtn" href='https://www.irs.gov/pub/irs-pdf/fw2.pdf' target="_blank" rel="noreferrer">{pdfIcon} Download</a>
               </div>
               <div className='fileBox'>
                 <div className='fileTitle fw-bold display-4 position-absolute '>1098-T</div>
                 <div className='fileText'>Form</div>
-                <a className="fileBtn" href='https://www.irs.gov/pub/irs-pdf/f1098t.pdf' target="_blank">{pdfIcon} Download</a>
+                <a className="fileBtn" href='https://www.irs.gov/pub/irs-pdf/f1098t.pdf' target="_blank" rel="noreferrer">{pdfIcon} Download</a>
               </div>                
             </Container>
         </div>

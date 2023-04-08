@@ -21,10 +21,7 @@ function TabView({ editable = false}) {
 
     
 
-    const NewTab = <div>
-        <label>New Tab</label>
-        <p>This is a new tab.</p>
-    </div>
+
 
     const createNewTab = ()=> {
         console.log("push new tab")
@@ -59,7 +56,7 @@ function TabView({ editable = false}) {
     useEffect(()=>{
         // console.log('tab use effect at index'+activeTabIndex)
         setAllTabs(budgets)
-        if (activeTabIndex == -1){
+        if (activeTabIndex === -1){
             // console.log('since active tab is null set it to '+ budgets.length - 1)
             activateTab(budgets.length - 1)
         }else{
@@ -70,7 +67,7 @@ function TabView({ editable = false}) {
         
         
         // console.log("the active tab is: "+activeTabIndex)
-    }, [allTabs])
+    }, [allTabs, activeTabIndex, budgets])
 
 
   return (
@@ -89,7 +86,7 @@ function TabView({ editable = false}) {
                     {allTabs.map((tab, index) =>(
                         <label 
                             key={index}
-                            className={index == activeTabIndex ? "active-tab" : "tab"}
+                            className={index === activeTabIndex ? "active-tab" : "tab"}
                             onClick = {()=> {
                                 activateTab(index) //local    
                             }}

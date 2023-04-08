@@ -1,19 +1,15 @@
-import BudgetPage from "./components/BudgetPage";
 import Sidebar from "./components/Sidebar";
 import TabView from "./components/TabView/TabView";
 import './App.css'
 import {useBudgets} from "./contexts/BudgetContext"
 import AddBudgetModal from "./components/AddBudgetModal";
 import { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Education from "./components/Education";
 import Files from "./components/Files";
 import Currency from "./components/Currency";
 import NotFound from "./components/NotFound";
 
-const firstPage = <BudgetPage title="March"/> 
-const secondPage = <BudgetPage title="April"/>
-const thirdPage = <BudgetPage title="May"/>
 
 function App() {
 
@@ -27,7 +23,7 @@ function App() {
       setShowAddBudgetModal(true)
       
     }
-  }, [])
+  }, [budgets])
   
 
   return (

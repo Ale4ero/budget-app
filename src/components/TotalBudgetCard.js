@@ -22,15 +22,17 @@ export default function TotalBudgetCard({title}) {
       const pageCategories = []
 
       expenses.map(expense =>{
-        if(expense.budget == title){
+        if(expense.budget === title){
           pageExpenses.push(expense)
         }
+        return(null)
       })
 
       categories.map(category =>{
-        if(category.budget == title){
+        if(category.budget === title){
           pageCategories.push(category)
         }
+        return(null)
       })
       
       const amount = pageExpenses.reduce((total, pageExpenses) => total + pageExpenses.amount, 0)

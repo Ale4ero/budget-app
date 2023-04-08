@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import '../App.css';
 import CurrencyRow from './CurrencyRow'
 
-const BASE_URL = 'https://api.exchangeratesapi.io/latest'
+
 
 export default function CurrencyConvertor() {
 
@@ -54,27 +54,27 @@ export default function CurrencyConvertor() {
     useEffect(() => {
         
         
-        if(fromCurrency.base == "USD"){
+        if(fromCurrency.base === "USD"){
             console.log("from usd")
-            if(toCurrency.base == "EUR"){
+            if(toCurrency.base === "EUR"){
                 setExchangeRate(0.92)
-            }else if(toCurrency.base == "CAD"){
+            }else if(toCurrency.base === "CAD"){
                 setExchangeRate(1.35)
             }else{
                 setExchangeRate(1)
             }
-        }else if(fromCurrency.base == "EUR"){
-            if(toCurrency.base == "USD"){
+        }else if(fromCurrency.base === "EUR"){
+            if(toCurrency.base === "USD"){
                 setExchangeRate(1.09)
-            }else if(toCurrency.base == "CAD"){
+            }else if(toCurrency.base === "CAD"){
                 setExchangeRate(1.47)
             }else{
                 setExchangeRate(1)
             }
         }else{
-            if(toCurrency.base == "USD"){
+            if(toCurrency.base === "USD"){
                 setExchangeRate(0.74)
-            }else if(toCurrency.base == "EUR"){
+            }else if(toCurrency.base === "EUR"){
                 setExchangeRate(0.68)
             }else{
                 setExchangeRate(1)

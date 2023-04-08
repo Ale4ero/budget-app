@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect} from "react";
 import { Button, Stack } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import AddCategoryModal from "./AddCategoryModal";
@@ -77,7 +77,8 @@ export default function BudgetPage({title}) {
 
 
     
-    let catNames= []
+    // let catNames= useMemo(() => []) 
+    let catNames = []
     let catSpending = []
     let catMax = []
     
@@ -93,6 +94,7 @@ export default function BudgetPage({title}) {
     useEffect(()=>{
     
         
+
         var chartColor = "#666"   
 
     
@@ -284,7 +286,7 @@ export default function BudgetPage({title}) {
                         />
                         ) 
                 }
-                  
+                 return(null) 
             })}
 
             {/* add uncategorized and total budget cards */}
