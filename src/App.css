@@ -494,8 +494,12 @@ html{
         width: 50px;
     }
 
+    .side-nav-bottom{
+        bottom: 20px;
+    }
+
     .budgets{
-        left: 50px;
+        left: 0px;
     }
 
     .pcLogo{
@@ -521,12 +525,15 @@ html{
 
 
     .nav-menu a{
-        margin: 0 auto;
+        /* margin: 0 auto; */
+        margin-left: 40px;
         padding: 0;
+
     }
 
     .nav-menu li:hover a{
         padding: 8px 8px 8px 8px;
+        margin-left: 30px;
     }
     
 }

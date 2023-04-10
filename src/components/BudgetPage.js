@@ -237,6 +237,8 @@ export default function BudgetPage({title}) {
         
         
         <h1 className="budgetTitle fw-bold" >{title} Budget</h1>
+        
+        
 
         <div className="graphs">
             <Container className="graphsContainer">
