@@ -8,7 +8,7 @@ import { Form } from 'react-bootstrap'
 export default function ConfirmModal({show, handleClose, budgetId, budgetName}) {
 
     const {deleteCategory} = useBudgets()
-    const name = "Delete "+ budgetName +" Budget?"
+    const name = "Delete "+ budgetName +" Category?"
 
     function handleSubmit(e){
       deleteCategory(budgetId)
