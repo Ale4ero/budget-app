@@ -240,7 +240,7 @@ export default function BudgetPage({title}) {
         
         
 
-        <div className="graphs">
+        <Container className="graphs">
             <Container className="graphsContainer">
                 
                 <div className="barGraph">
@@ -254,7 +254,7 @@ export default function BudgetPage({title}) {
                 </div>                   
             </Container>
 
-        </div>
+        </Container>
 
     {/* Monthly Budgets Container */}
     <div className="budgets">
