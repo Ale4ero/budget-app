@@ -409,12 +409,13 @@ html{
 .fileContainer{
     position: absolute;
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
-    top: 0;
+    top: 200px;
     right: 0;
     left: 0;
-    height: 95vh;
+    height: 55vh;
 }
 
 .fileBox{
@@ -430,11 +431,14 @@ html{
     position: relative;
     justify-content: center;
     align-content: flex-start;
+    margin-bottom: 10px;
+    z-index: 2;
 }
 
 .fileBox:hover{
     scale: 1.2;
     transition: all .2s ease-in-out;
+    z-index: 3;
 }
 
 .fileTitle{
@@ -510,6 +514,10 @@ html{
 }
 
 @media only screen and (max-width: 600px){
+
+    .pageContent{
+        left: 50px;
+    }
 
     .barGraph{
         width: 320px;

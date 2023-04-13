@@ -34,7 +34,7 @@ function TabView({ editable = false}) {
     }
 
     const deleteTab = (index)=> {
-        if(allTabs.length < 2){
+        if(allTabs.length < 0){
             alert("You must have one active tab!")
         }else{
             console.log("delete this tab at index "+index)
@@ -91,9 +91,16 @@ function TabView({ editable = false}) {
             <div>
                 <div className="tabs">
                     {allTabs.map((tab, index) =>(
+                        <>
+    
+                        
+                        
+                        {console.log(typeof activeTabIndex)}
+                        {console.log(typeof index)}
                         <label 
+                            
                             key={index}
-                            className={index === activeTabIndex ? "active-tab" : "tab"}
+                            className={index === Number(activeTabIndex) ? "active-tab" : "tab"}
                             onClick = {()=> {
                                 activateTab(index) //local    
                             }}
@@ -102,10 +109,12 @@ function TabView({ editable = false}) {
                             <div className="deleteTab" onClick={()=>deleteTab(index)}>&times;</div>
                             <div className='borderRight'></div>
                         </label>
+                        </>
                     ))}
                     {editable ? NewTabButton : null}
                 </div>
                 <div className="content">
+                    {!activeTabIndex&&(console.log("no active tab"))}
     
 
                     <BudgetPage title={budgets[activeTabIndex]?.name} graphCategories={[]}/>

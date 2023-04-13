@@ -19,17 +19,17 @@ export default function Files() {
               <div className='fileBox'>
                 <div className='fileTitle'>1040</div>
                 <div className='fileText'>Income Form</div>
-                <a className="fileBtn" href='https://www.irs.gov/pub/irs-pdf/f1040.pdf' target="_blank" rel="noreferrer">{pdfIcon} File</a>
+                <a className="fileBtn" href='https://www.irs.gov/pub/irs-pdf/f1040.pdf' target="_blank" rel="noreferrer">{pdfIcon} Form</a>
               </div>
               <div className='fileBox'>
                 <div className='fileTitle'>W-2</div>
                 <div className='fileText'>Employer Form</div>
-                <a className="fileBtn" href='https://www.irs.gov/pub/irs-pdf/fw2.pdf' target="_blank" rel="noreferrer">{pdfIcon} File</a>
+                <a className="fileBtn" href='https://www.irs.gov/pub/irs-pdf/fw2.pdf' target="_blank" rel="noreferrer">{pdfIcon} Form</a>
               </div>
               <div className='fileBox'>
                 <div className='fileTitle'>1098-T</div>
                 <div className='fileText'>Tuition Form</div>
-                <a className="fileBtn" href='https://www.irs.gov/pub/irs-pdf/f1098t.pdf' target="_blank" rel="noreferrer">{pdfIcon} File</a>
+                <a className="fileBtn" href='https://www.irs.gov/pub/irs-pdf/f1098t.pdf' target="_blank" rel="noreferrer">{pdfIcon} Form</a>
               </div>                
             </Container>
         </div>
