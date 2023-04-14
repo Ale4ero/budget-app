@@ -24,7 +24,7 @@ export default function Sidebar() {
         <ul>
           {/* <li><a href="/"><i>{houseIcon}</i><p>Home</p></a></li>
           <li><a href="/education"><i>{educationIcon}</i><p>Education</p></a></li> */}
-          <li><NavLink to="/"><i>{houseIcon}</i><p>Home</p></NavLink></li>
+          <li><NavLink to="/"><i>{houseIcon}</i><p>Budgets</p></NavLink></li>
           <li><NavLink to="/education"><i>{educationIcon}</i><p>Education</p></NavLink></li>
           <li><NavLink to="/currency"><i>{currencyIcon}</i><p>Currency</p></NavLink></li>
           <li><NavLink to="/files"><i>{fileIcon}</i><p>Files</p></NavLink></li>
