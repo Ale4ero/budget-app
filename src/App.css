@@ -336,6 +336,8 @@ html{
 .pageTitle{
     position: relative;
     margin-left: 10px;
+    display: flex;
+    align-items:baseline;
 }
 
 .pageText{
@@ -347,7 +349,7 @@ html{
 .eduContainer{
     box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
-    padding: 50px 50px;
+    padding: 20px 50px;
     background-color: var(--contBg);
     color: var(--color);
     position: absolute;
@@ -355,8 +357,39 @@ html{
     left: 0;
     right: 0;
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     justify-content: center;
+}
+
+.eduContainer p{
+    line-height: 30px;
+    margin: 0 20px;
+    margin-bottom: 15px;
+}
+
+.undCredit{
+    margin-bottom: 40px;
+}
+
+.textContainer{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-around;
+    gap: 20px;
+    margin-top: 40px;
+    
+}
+
+.textBox{
+    width: 300px;
+    height: 500px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    background-color: var(--bodyBg);
 }
 
 .currencyContainer{

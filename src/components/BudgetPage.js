@@ -236,7 +236,8 @@ export default function BudgetPage({title}) {
 
         
         
-        <h1 className="budgetTitle fw-bold" >{title} Budget</h1>
+        {/* <h1 className="budgetTitle fw-bold" >{title} <div>|Budget</div></h1> */}
+        <div className="pageTitle display-6 my-2"><h1 className='display-inline fw-bold me-2'>{title}</h1>  |Budget</div>
         
         
 
