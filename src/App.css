@@ -514,6 +514,18 @@ html{
 }
 
 
+/* Add Budget Modal */
+.newBudgetModalContainer{
+    display: flex;
+    align-content: flex-start;
+    margin-bottom: 15px;
+}
+
+.budgetName{
+    margin-right: 10px;
+    width: 70%;
+}
+
 @media only screen and (max-width: 1200px){
     .graphsContainer{
         /* display:none; */

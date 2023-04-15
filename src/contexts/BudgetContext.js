@@ -15,6 +15,7 @@ export const BudgetsProvider = ({ children }) => {
     const [categories, setCategories] = useLocalStorage("categories",[])
     const [expenses, setExpenses] = useLocalStorage("expenses",[])
     const [budgets, setBudgets] = useLocalStorage("budgets",[])
+    const [tabBudgets, setTabBudgets] = useLocalStorage("tab budgets", [])
 
     const [activeTabIndex, setActiveTabIndex] = useState(localStorage.getItem('currentIndex'))
 
@@ -44,7 +45,26 @@ export const BudgetsProvider = ({ children }) => {
 
     function addBudget({name}){
         setBudgets(prevBudgets =>{
+            if(prevBudgets.find(budget => budget.name === name)){
+                return prevBudgets
+            }
             return [...prevBudgets, {id: uuidv4(), name}]
+        })
+    }
+
+    function addTabBudget({name}){
+        setTabBudgets(prevTabBudgets =>{
+            if(prevTabBudgets.find(tab => tab.name === name)){
+                console.log("tab already being shown")
+                return prevTabBudgets
+            } 
+            return [...prevTabBudgets, {id: uuidv4(), name}]
+        })
+    }
+
+    function removeTabBudget({name}){
+        setTabBudgets(prevTabBudgets=>{
+            return prevTabBudgets.filter(tab => tab.name !== name)
         })
     }
     
@@ -87,6 +107,7 @@ export const BudgetsProvider = ({ children }) => {
         categories,
         expenses,
         budgets,
+        tabBudgets,
         activeTabIndex,
         activeTheme,
         getBudgetExpenses,
@@ -95,6 +116,8 @@ export const BudgetsProvider = ({ children }) => {
         deleteCategory,
         deleteExpense,
         addBudget,
+        addTabBudget,
+        removeTabBudget,
         setTabIndex,
         setTheme
     }}> {children} </BudgetsContext.Provider>
