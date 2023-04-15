@@ -146,6 +146,57 @@
     transition: background-color 200ms ease-in;
 }
 
+.newBudgetContainer{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+}
+
+.newBudgetButton{
+    width: 300px;
+    height: 300px;
+    border-radius: 20px;
+    background-color: var(--contBg);
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content:center;
+}
+
+.circle{
+    font-size: 120px;
+    color: var(--primaryButton);
+    border: var(--primaryButton) 3px solid;
+    border-radius: 100px;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.circle:hover{
+    
+    border: var(--light);
+    background-color: var(--primaryButton);
+    color: var(--light);
+}
+
+.plusSign{
+    
+    color: var(--primaryButton);
+}
+
+.body{
+    background-color: var(--bodyBg);
+    color: var(--color);
+}
+
 @media only screen and (max-width: 600px){
     .TabView{
         left: 50px;
