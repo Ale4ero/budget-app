@@ -40,11 +40,11 @@ function TabView({ editable = false}) {
         localStorage.setItem('currentIndex', newTabs.length - 1)
         
 
-        if(localStorage.getItem("currentIndex") >= allTabs.length){
-            console.log('set new tab index to')
-            setTabIndex(allTabs.length - 1)
-            activateTab(allTabs.length - 1)
-        }
+        // if(localStorage.getItem("currentIndex") >= allTabs.length){
+        //     console.log('set new tab index to')
+        //     setTabIndex(allTabs.length - 1)
+        //     activateTab(allTabs.length - 1)
+        // }
         
     }
 
@@ -130,8 +130,10 @@ function TabView({ editable = false}) {
                     {editable ? NewTabButton : null}
                 </div>
                 <div className="content">   
+                            
                     {console.log('active tab index: '+activeTabIndex)}
-                    <BudgetPage title={budgets[Number(activeTabIndex)]?.name} graphCategories={[]}/>
+                    {console.log('console active tab index: '+ localStorage.getItem("currentIndex"))}
+                    <BudgetPage title={tabBudgets[Number(activeTabIndex)]?.name} graphCategories={[]}/>
 
                     <AddBudgetModal 
                         show={showAddBudgetModal} 

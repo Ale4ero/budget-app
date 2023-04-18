@@ -5,7 +5,7 @@ import { useBudgets } from "../contexts/BudgetContext"
 export default function AddBudgetModal({ show, handleClose}) {
     const newNameRef = useRef()
     const existingNameRef = useRef()
-    const { addBudget, addTabBudget, budgets} = useBudgets()
+    const { addBudget, addTabBudget, budgets, tabBudgets, setTabIndex} = useBudgets()
 
     // function handleNewSubmit(e){
     //     addBudget({
@@ -15,23 +15,28 @@ export default function AddBudgetModal({ show, handleClose}) {
     //     console.log("addded budget")
     // }
 
-    // function handleExistingSubmit(e){
-    //     addTabBudget({
-    //         name: existingNameRef.current.value
-    //     })
-    //     console.log("addded budget")
-    //     handleClose()
+    function handleExistingSubmit(e){
+        addTabBudget({
+            name: existingNameRef.current.value
+        })
+        for(var i = 0; i < budgets.length;i++){
+            if(budgets[i].name == existingNameRef.current.value){
+                setTabIndex(i)
+                console.log('set tab index to:'+i+'from modal.')
+            }
+        }
+        handleClose()
         
-    // }
+    }
 
   return (
     <Modal show={show} onHide={handleClose}>
-        <Form >
+        <Form onSubmit={handleExistingSubmit}>
             <Modal.Header closeButton>
                 <Modal.Title>Add Budget Tab</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <Form.Group className="mb-3" controlId="name">
+                <Form.Group className="mb-3" controlId="name" >
                     <Form.Label>Add New Budget</Form.Label>
                     <div className="newBudgetModalContainer">
                         <div className="budgetName">
@@ -41,7 +46,7 @@ export default function AddBudgetModal({ show, handleClose}) {
                         <Button varient="primary" onClick={()=>addBudget({
                             name: newNameRef.current.value})}>Add New</Button>
                     </div>
-                    
+                
                     {budgets.length > 0 && <>
                         <Form.Label >Select Budget</Form.Label>
                         <div className="newBudgetModalContainer">
@@ -57,18 +62,28 @@ export default function AddBudgetModal({ show, handleClose}) {
                         </div>
 
                         <div className="d-flex justify-content-end">
-                            <Button varient="primary" type="submit" onClick={()=>{
+                            {/* <Button varient="primary" type="submit" onClick={()=>{
                                 addTabBudget({
                                     name: existingNameRef.current.value
                                 })
-                            }}>Add Budget</Button>
+                                for(var i = 0; i < budgets.length;i++){
+                                    if(budgets[i].name == existingNameRef.current.value){
+                                        setTabIndex(i)
+                                        console.log('set tab index to:'+i+'from modal.')
+                                    }
+                                }
+                            }}>Add Budget</Button> */}
+                            
+                                <Button varient="primary" type="submit">Add Budget</Button>
+                            
+                            
                         </div>
                     
                     </>}
+                </Form.Group>    
                     
                     
-                    
-                </Form.Group>
+                
                 
             </Modal.Body>
         </Form>
