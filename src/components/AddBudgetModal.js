@@ -5,7 +5,7 @@ import { useBudgets } from "../contexts/BudgetContext"
 export default function AddBudgetModal({ show, handleClose}) {
     const newNameRef = useRef()
     const existingNameRef = useRef()
-    const { addBudget, addTabBudget, budgets, tabBudgets, setTabIndex} = useBudgets()
+    const { addBudget, addTabBudget, budgets, setTabIndex} = useBudgets()
 
     // function handleNewSubmit(e){
     //     addBudget({
@@ -20,7 +20,7 @@ export default function AddBudgetModal({ show, handleClose}) {
             name: existingNameRef.current.value
         })
         for(var i = 0; i < budgets.length;i++){
-            if(budgets[i].name == existingNameRef.current.value){
+            if(budgets[i].name === existingNameRef.current.value){
                 setTabIndex(i)
                 console.log('set tab index to:'+i+'from modal.')
             }
