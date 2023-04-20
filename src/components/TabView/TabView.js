@@ -68,11 +68,11 @@ function TabView({ editable = false}) {
             
         }
 
-        if(Number(localStorage.getItem("currentIndex")) === allTabs.length){
-            console.log('set new tab index to')
-            setTabIndex(allTabs.length - 1)
-            activateTab(allTabs.length - 1)
-        }
+        // if(Number(localStorage.getItem("currentIndex")) === allTabs.length){
+        //     console.log('set new tab index to')
+        //     setTabIndex(allTabs.length - 1)
+        //     activateTab(allTabs.length - 1)
+        // }
     }
 
     tempTabFunc.current = tabFunction

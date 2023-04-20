@@ -25,7 +25,7 @@ export default function AddCategoryModal({ show, handleClose, budget}) {
             <Modal.Body>
                 <Form.Group className="mb-3" controlId="name">
                     <Form.Label>Category Name</Form.Label>
-                    <Form.Control ref={nameRef} type="text" autoComplete="off" required/>
+                    <Form.Control ref={nameRef} type="text" autoComplete="off" required maxLength={"15"}/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="max">
                     <Form.Label>Max Spending</Form.Label>
@@ -33,7 +33,8 @@ export default function AddCategoryModal({ show, handleClose, budget}) {
                         ref={maxRef} 
                         type="number" 
                         required 
-                        min={0} 
+                        min={0}
+                        max={1000000} 
                         step={0.01}
                     />
                 </Form.Group>

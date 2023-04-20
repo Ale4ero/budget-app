@@ -28,7 +28,7 @@ export default function AddExpenseModal({ show, handleClose, defaultBudgetId, bu
             <Modal.Body>
                 <Form.Group className="mb-3" controlId="description">
                     <Form.Label>Description</Form.Label>
-                    <Form.Control ref={descriptionRef} type="text" autoComplete="off" required/>
+                    <Form.Control ref={descriptionRef} type="text" autoComplete="off" required maxLength={"20"}/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="amount">
                     <Form.Label>Amount</Form.Label>
@@ -38,6 +38,7 @@ export default function AddExpenseModal({ show, handleClose, defaultBudgetId, bu
                         required 
                         min={0} 
                         step={0.01}
+                        max={1000000}
                     />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="budgetId">

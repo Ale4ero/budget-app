@@ -40,7 +40,7 @@ export default function AddBudgetModal({ show, handleClose}) {
                     <Form.Label>Add New Budget</Form.Label>
                     <div className="newBudgetModalContainer">
                         <div className="budgetName">
-                            <Form.Control ref={newNameRef} type="text" autoComplete="off" placeholder='Budget Name'/>
+                            <Form.Control ref={newNameRef} type="text" autoComplete="off" placeholder='Budget Name (10 char max)'/>
                         </div>
                         
                         <Button varient="primary" onClick={()=>addBudget({
@@ -50,33 +50,16 @@ export default function AddBudgetModal({ show, handleClose}) {
                     {budgets.length > 0 && <>
                         <Form.Label >Select Budget</Form.Label>
                         <div className="newBudgetModalContainer">
-
                             <Form.Select ref={existingNameRef} required>
                                 {/* <option selected disabled hidden></option> */}
                                 {budgets.map(budget =>(            
                                     <option key={budget.name} value={budget.name} selected>{budget.name}</option>
                                 ))}
-                            </Form.Select>
-                        
-                        
+                            </Form.Select> 
                         </div>
 
                         <div className="d-flex justify-content-end">
-                            {/* <Button varient="primary" type="submit" onClick={()=>{
-                                addTabBudget({
-                                    name: existingNameRef.current.value
-                                })
-                                for(var i = 0; i < budgets.length;i++){
-                                    if(budgets[i].name == existingNameRef.current.value){
-                                        setTabIndex(i)
-                                        console.log('set tab index to:'+i+'from modal.')
-                                    }
-                                }
-                            }}>Add Budget</Button> */}
-                            
-                                <Button varient="primary" type="submit">Add Budget</Button>
-                            
-                            
+                                <Button varient="primary" type="submit">Add Budget</Button>       
                         </div>
                     
                     </>}
