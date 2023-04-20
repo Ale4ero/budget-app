@@ -43,8 +43,14 @@ export default function AddBudgetModal({ show, handleClose}) {
                             <Form.Control ref={newNameRef} type="text" autoComplete="off" placeholder='Budget Name (10 char max)'/>
                         </div>
                         
-                        <Button varient="primary" onClick={()=>addBudget({
-                            name: newNameRef.current.value})}>Add New</Button>
+                        <Button className="btn-secondary" onClick={()=>{
+                            if(newNameRef.current.value.trim() !==""){
+                                addBudget({
+
+                                    name: newNameRef.current.value
+                                    })
+                            }
+                            }}>Add New</Button>
                     </div>
                 
                     {budgets.length > 0 && <>
@@ -59,7 +65,7 @@ export default function AddBudgetModal({ show, handleClose}) {
                         </div>
 
                         <div className="d-flex justify-content-end">
-                                <Button varient="primary" type="submit">Add Budget</Button>       
+                                <Button varient="primary" type="submit">Add Budget Tab</Button>       
                         </div>
                     
                     </>}
