@@ -5,7 +5,7 @@ import { useBudgets } from "../contexts/BudgetContext"
 export default function AddBudgetModal({ show, handleClose}) {
     const newNameRef = useRef()
     const existingNameRef = useRef()
-    const { addBudget, addTabBudget, budgets, setTabIndex, tabBudgets} = useBudgets()
+    const { addBudget, addTabBudget, budgets, setTabIndex} = useBudgets()
 
     // function handleNewSubmit(e){
     //     addBudget({
