@@ -8,18 +8,18 @@ import CurrencyRow from './CurrencyRow'
 export default function CurrencyConvertor() {
 
     const usdRates = {
-        EUR: 0.92, 
-        CAD: 1.35
+        EUR: 0.90, 
+        CAD: 1.36
     }
 
     const eurRates = {
-        USD: 1.09, 
-        CAD: 1.47
+        USD: 1.11, 
+        CAD: 1.51
     }
 
     const canRates = {
-        USD: 0.74, 
-        EUR: 0.68
+        USD: 0.73, 
+        EUR: 0.66
     }
     
     const currencyOptions = [
