@@ -1,18 +1,17 @@
 import { Form, Modal, Button } from "react-bootstrap"
 import {useRef} from "react"
-import { UNCATEGORIZED_BUDGET_ID, useBudgets } from "../contexts/BudgetContext"
+import { useBudgets } from "../contexts/BudgetContext"
 
-export default function AddExpenseModal({ show, handleClose, defaultBudgetId, budget }) {
+export default function AddExpenseModal({ show, handleClose, defaultBudgetId, budget, budgetName }) {
     const descriptionRef = useRef()
     const amountRef = useRef()
-    const budgetIdRef = useRef()
-    const { addExpense, categories} = useBudgets()
+    const { addExpense} = useBudgets()
 
     function handleSubmit(e){
         addExpense({
             description: descriptionRef.current.value,
             amount: parseFloat(amountRef.current.value), //parse from string to float
-            budgetId: budgetIdRef.current.value,
+            budgetId: defaultBudgetId,
             budget: budget
         })
 
@@ -23,7 +22,7 @@ export default function AddExpenseModal({ show, handleClose, defaultBudgetId, bu
     <Modal show={show} onHide={handleClose}>
         <Form onSubmit={handleSubmit}>
             <Modal.Header closeButton>
-                <Modal.Title>New Expense</Modal.Title>
+                <Modal.Title> <div>New {budgetName} Expense</div></Modal.Title>
             </Modal.Header>
             <Modal.Body>
                 <Form.Group className="mb-3" controlId="description">
@@ -41,18 +40,18 @@ export default function AddExpenseModal({ show, handleClose, defaultBudgetId, bu
                         max={1000000}
                     />
                 </Form.Group>
-                <Form.Group className="mb-3" controlId="budgetId">
+                {/* <Form.Group className="mb-3" controlId="budgetId">
                     <Form.Label>Budget</Form.Label>
                     <Form.Select 
                         defaultValue={defaultBudgetId} ref={budgetIdRef}>
-                            <option id={UNCATEGORIZED_BUDGET_ID}> Uncategorized </option>
-                            {categories.map(category =>(
-                                <option key={category.id} value={category.id}>
-                                    {category.name}
-                                </option>
-                            ))}
+                        <option id={UNCATEGORIZED_BUDGET_ID}> Uncategorized </option>
+                        {categories.map(category =>(
+                            <option key={category.id} value={category.id}>
+                                {category.name}
+                            </option>
+                        ))}
                     </Form.Select>
-                </Form.Group>
+                </Form.Group> */}
                 <div className="d-flex justify-content-end">
                     <Button varient="primary" type="submit">Add</Button>
                 </div>

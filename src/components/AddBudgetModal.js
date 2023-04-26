@@ -45,9 +45,19 @@ export default function AddBudgetModal({ show, handleClose}) {
                         <Button className="btn-secondary" onClick={()=>{
                             if(newNameRef.current.value.trim() !==""){
                                 addBudget({
-
                                     name: newNameRef.current.value.trim()
-                                    })
+                                })
+                                addTabBudget({
+                                    name: newNameRef.current.value
+                                })
+                                for(var i = 0; i < budgets.length;i++){
+                                    if(budgets[i].name === newNameRef.current.value){
+                                        setTabIndex(i)
+                                        console.log('set tab index to:'+i+'from modal.')
+                                    }
+                                }
+                                handleClose()
+                                
                             }
                             }}>Create New</Button>
                     </div>

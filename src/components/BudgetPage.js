@@ -31,6 +31,7 @@ export default function BudgetPage({title}) {
 
     //useState for addExpense button FOR SPECIFIC BUDGET
     const [addExpenseModalBudgetId, setAddExpenseModalModalId] = useState()
+    const [addExpenseModalBudgetName, setAddExpenseModalModalName] = useState()
 
 
     const [showConfirmModal, setShowConfirmModal] = useState(false)
@@ -52,9 +53,10 @@ export default function BudgetPage({title}) {
     
 
 
-    function openAddExpenseModal(categoryId){
+    function openAddExpenseModal(categoryId, categoryName){
         setShowAddExpenseModal(true)
         setAddExpenseModalModalId(categoryId)
+        setAddExpenseModalModalName(categoryName)
     }
 
     function openConfirmModal(categoryId, categoryName){
@@ -290,7 +292,7 @@ export default function BudgetPage({title}) {
                         name={category.name} 
                         amount={amount} 
                         max={category.max}
-                        onAddExpenseClick={() => openAddExpenseModal(category.id)}
+                        onAddExpenseClick={() => openAddExpenseModal(category.id, category.name)}
                         onViewExpensesClick={() => setViewExpensesModalBudgetId(category.id)}
                         onDeleteBudgetClick={()=>openConfirmModal(category.id, category.name)}
                         budgetId={id}
@@ -321,6 +323,7 @@ export default function BudgetPage({title}) {
     defaultBudgetId={addExpenseModalBudgetId}
     handleClose={()=> setShowAddExpenseModal(false)} 
     budget={title}
+    budgetName={addExpenseModalBudgetName}
     />
     <ViewExpensesModal 
     budgetId={viewExpensesModalBudgetId}
