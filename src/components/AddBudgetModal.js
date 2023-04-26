@@ -5,7 +5,7 @@ import { useBudgets } from "../contexts/BudgetContext"
 export default function AddBudgetModal({ show, handleClose}) {
     const newNameRef = useRef()
     const existingNameRef = useRef()
-    const { addBudget, addTabBudget, budgets, setTabIndex} = useBudgets()
+    const { addBudget, addTabBudget, budgets, setTabIndex, tabBudgets} = useBudgets()
 
     // function handleNewSubmit(e){
     //     addBudget({
@@ -26,7 +26,6 @@ export default function AddBudgetModal({ show, handleClose}) {
             }
         }
         handleClose()
-        
     }
 
   return (
@@ -37,24 +36,24 @@ export default function AddBudgetModal({ show, handleClose}) {
             </Modal.Header>
             <Modal.Body>
                 <Form.Group className="mb-3" controlId="name" >
-                    <Form.Label>Add New Budget</Form.Label>
+                    <Form.Label>Create New Budget</Form.Label>
                     <div className="newBudgetModalContainer">
                         <div className="budgetName">
-                            <Form.Control ref={newNameRef} type="text" autoComplete="off" placeholder='Budget Name (10 char max)'/>
+                            <Form.Control ref={newNameRef} type="text" autoComplete="off" maxLength={"10"} placeholder='Budget Name (10 char max)'/>
                         </div>
                         
                         <Button className="btn-secondary" onClick={()=>{
                             if(newNameRef.current.value.trim() !==""){
                                 addBudget({
 
-                                    name: newNameRef.current.value
+                                    name: newNameRef.current.value.trim()
                                     })
                             }
-                            }}>Add New</Button>
+                            }}>Create New</Button>
                     </div>
                 
                     {budgets.length > 0 && <>
-                        <Form.Label >Select Budget</Form.Label>
+                        <Form.Label >Select From Budget List</Form.Label>
                         <div className="newBudgetModalContainer">
                             <Form.Select ref={existingNameRef} required>
                                 {/* <option selected disabled hidden></option> */}

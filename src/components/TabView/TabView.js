@@ -14,7 +14,7 @@ function TabView({ editable = false}) {
     const [activeTabIndex, setActiveTabIndex] = useState(localStorage.getItem('currentIndex'))
     const[allTabs, setAllTabs] = useState([{}])
 
-    const NewTabButton = <div className="tabBtn" onClick={()=>setShowAddBudgetModal(true) }>+</div>
+    const NewTabButton = <div className="tabBtn" onClick={()=> addTab()}>+</div>
 
     const [showAddBudgetModal, setShowAddBudgetModal] = useState(false)
 
@@ -23,7 +23,11 @@ function TabView({ editable = false}) {
     const tempTabFunc = useRef()
     
 
+    function addTab(){
+        setShowAddBudgetModal(true)
 
+        
+    }
 
 
     const deleteTab = (name, index)=> {
@@ -36,8 +40,10 @@ function TabView({ editable = false}) {
         removeTabBudget(name)
         console.log("newTabs: "+newTabs)
         setAllTabs(newTabs)
-        setActiveTabIndex(newTabs.length - 1)
-        localStorage.setItem('currentIndex', newTabs.length - 1)
+        // var newIndex = tabBudgets.length - 1
+        // setActiveTabIndex(newIndex)
+        // localStorage.setItem('currentIndex', newIndex)
+        // console.log("Should be setting tab index to: "+newIndex)
         
 
         // if(localStorage.getItem("currentIndex") >= allTabs.length){
@@ -68,11 +74,12 @@ function TabView({ editable = false}) {
             
         }
 
-        // if(Number(localStorage.getItem("currentIndex")) === allTabs.length){
-        //     console.log('set new tab index to')
-        //     setTabIndex(allTabs.length - 1)
-        //     activateTab(allTabs.length - 1)
-        // }
+        if(Number(localStorage.getItem("currentIndex")) >= tabBudgets.length){
+            var newIndex = tabBudgets.length - 1
+            console.log('set new tab index to: '+newIndex)
+            setTabIndex(newIndex)
+            activateTab(newIndex)
+        }
     }
 
     tempTabFunc.current = tabFunction

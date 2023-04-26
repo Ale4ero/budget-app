@@ -54,12 +54,16 @@ export const BudgetsProvider = ({ children }) => {
 
     function addTabBudget({name}){
         setTabBudgets(prevTabBudgets =>{
+            
             if(prevTabBudgets.find(tab => tab.name === name)){
                 console.log("tab already being shown")
                 return prevTabBudgets
             } 
             return [...prevTabBudgets, {id: uuidv4(), name}]
         })
+        // var newIndex = tabBudgets.length+1
+        // console.log('from context set new index to:'+ newIndex)
+        // setTabIndex(newIndex)
     }
 
     function removeTabBudget({name}){
