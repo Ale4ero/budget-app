@@ -58,25 +58,25 @@ export default function CurrencyConvertor() {
         if(fromCurrency.base === "USD"){
             console.log("from usd")
             if(toCurrency.base === "EUR"){
-                setExchangeRate(0.92)
+                setExchangeRate(0.90)
             }else if(toCurrency.base === "CAD"){
-                setExchangeRate(1.35)
+                setExchangeRate(1.36)
             }else{
                 setExchangeRate(1)
             }
         }else if(fromCurrency.base === "EUR"){
             if(toCurrency.base === "USD"){
-                setExchangeRate(1.09)
+                setExchangeRate(1.11)
             }else if(toCurrency.base === "CAD"){
-                setExchangeRate(1.47)
+                setExchangeRate(1.51)
             }else{
                 setExchangeRate(1)
             }
         }else{
             if(toCurrency.base === "USD"){
-                setExchangeRate(0.74)
+                setExchangeRate(0.73)
             }else if(toCurrency.base === "EUR"){
-                setExchangeRate(0.68)
+                setExchangeRate(0.66)
             }else{
                 setExchangeRate(1)
             }
