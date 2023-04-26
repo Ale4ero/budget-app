@@ -39,7 +39,7 @@ export default function AddBudgetModal({ show, handleClose}) {
                     <Form.Label>Create New Budget</Form.Label>
                     <div className="newBudgetModalContainer">
                         <div className="budgetName">
-                            <Form.Control ref={newNameRef} type="text" autoComplete="off" maxLength={"10"} placeholder='Budget Name (10 char max)'/>
+                            <Form.Control ref={newNameRef} type="text" autoComplete="off" maxLength={"10"} placeholder='Enter Name ex. July (10 char max)'/>
                         </div>
                         
                         <Button className="btn-secondary" onClick={()=>{
