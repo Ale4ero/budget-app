@@ -52,6 +52,33 @@ export const BudgetsProvider = ({ children }) => {
         })
     }
 
+    function deleteBudget(){
+        //get current index from local storage
+        var index = localStorage.getItem("currentIndex")
+
+        //get current page budget name
+        var name = budgets[index].name
+        
+        setExpenses(prevExpenses=>{
+            return prevExpenses.filter(expense => expense.budget !== name)
+        })
+        setCategories(prevCategories=>{
+            return prevCategories.filter(category => category.budget !== name)
+        })
+       
+        
+        console.log("delete "+ name)
+        setBudgets(prevBudgets =>{
+            return prevBudgets.filter( budget => budget.name !== name)
+        })
+        setTabBudgets(prevTabBudgets=>{
+            return prevTabBudgets.filter(tab => tab.name !== name)
+        })
+        
+        
+        
+    }
+
     function addTabBudget({name}){
         setTabBudgets(prevTabBudgets =>{
             
@@ -120,6 +147,7 @@ export const BudgetsProvider = ({ children }) => {
         deleteCategory,
         deleteExpense,
         addBudget,
+        deleteBudget,
         addTabBudget,
         removeTabBudget,
         setTabIndex,

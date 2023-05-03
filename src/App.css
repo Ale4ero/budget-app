@@ -526,6 +526,76 @@ html{
     width: 70%;
 }
 
+.editBudgetBtn{
+    width: 30px;
+    height: 30px;
+    border-radius: 15%;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    margin-left: 5px;
+}
+
+.editBudgetBtn:hover{
+    cursor: pointer;
+}
+
+.optionsDropDown{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--contBg);
+    width: 80px;
+    height: 70px;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    top: 20px;
+    left: 290px;
+    z-index: 100;
+
+}
+
+.optionsItemEdit{
+    display: flex;
+    position: relative;
+    align-items: center;
+    flex-basis: 100%;
+    margin-bottom: 2px;
+    padding-left: 5px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+.optionsItemDelete{
+    display: flex;
+    position: relative;
+    align-items: center;
+    flex-basis: 100%;
+    padding-left: 5px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.optionsItemEdit:hover{
+    background-color: #b6b6b8;
+    cursor: pointer;
+}
+.optionsItemDelete:hover{
+    background-color: var(--red);
+    cursor: pointer;
+}
+
+.blankSpace{
+    position: absolute;
+    /* background-color: #0d6efd; */
+    width: 100vw;
+    height: 100vh;
+    z-index: 99;
+}
+
+
+
+
+
 @media only screen and (max-width: 1200px){
     .graphsContainer{
         /* display:none; */

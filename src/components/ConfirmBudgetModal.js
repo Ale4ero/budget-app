@@ -5,13 +5,13 @@ import { useBudgets} from '../contexts/BudgetContext'
 import { Form } from 'react-bootstrap'
 
 
-export default function ConfirmModal({show, handleClose, categoryId, categoryName}) {
+export default function ConfirmBudgetModal({show, handleClose,budgetName}) {
 
-    const {deleteCategory} = useBudgets()
-    const name = "Delete "+ categoryName +" Category?"
+    const {deleteBudget} = useBudgets()
+    const name = "Delete "+ budgetName +" Budget?"
 
     function handleSubmit(e){
-      deleteCategory(categoryId)
+      deleteBudget()
       handleClose()
     }
 
@@ -23,7 +23,7 @@ export default function ConfirmModal({show, handleClose, categoryId, categoryNam
               <Modal.Title>{name}</Modal.Title>
             </Modal.Header>
           <Modal.Body>
-          <p>All expenses will be moved into "Uncategorized" category.</p>
+          <p>All categories and expenses in this budget will be Deleted premenently.</p>
               <Button className='mx-3' variant="primary" type='submit'>
                 Yes
               </Button>
@@ -38,4 +38,3 @@ export default function ConfirmModal({show, handleClose, categoryId, categoryNam
     </>
   )
 }
-

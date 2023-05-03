@@ -40,17 +40,6 @@ function TabView({ editable = false}) {
         removeTabBudget(name)
         console.log("newTabs: "+newTabs)
         setAllTabs(newTabs)
-        // var newIndex = tabBudgets.length - 1
-        // setActiveTabIndex(newIndex)
-        // localStorage.setItem('currentIndex', newIndex)
-        // console.log("Should be setting tab index to: "+newIndex)
-        
-
-        // if(localStorage.getItem("currentIndex") >= allTabs.length){
-        //     console.log('set new tab index to')
-        //     setTabIndex(allTabs.length - 1)
-        //     activateTab(allTabs.length - 1)
-        // }
         
     }
 

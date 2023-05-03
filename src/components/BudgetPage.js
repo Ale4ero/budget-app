@@ -9,11 +9,16 @@ import UncategorizedBudgetCard from "./UncategorizedBudgetCard";
 import TotalBudgetCard from "./TotalBudgetCard";
 import { UNCATEGORIZED_BUDGET_ID, useBudgets } from "../contexts/BudgetContext";
 import ConfirmModal from "./ConfirmModal";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons'
 import '../App.css';
 import {Chart as chartjs, CategoryScale, LinearScale, BarElement, Tooltip, Legend} from 'chart.js/auto';
 
 import { Bar, Doughnut } from 'react-chartjs-2';
+import OptionsDropDown from "./OptionsDropDown";
+import ConfirmBudgetModal from "./ConfirmBudgetModal";
 
+const ellispisIcon = <FontAwesomeIcon icon={faEllipsisVertical} size="2xs"/>
 
 chartjs.register(
   CategoryScale, LinearScale, BarElement, Tooltip, Legend
@@ -33,14 +38,22 @@ export default function BudgetPage({title}) {
     const [addExpenseModalBudgetId, setAddExpenseModalModalId] = useState()
     const [addExpenseModalBudgetName, setAddExpenseModalModalName] = useState()
 
-
+    //show confirm modal for delete category
     const [showConfirmModal, setShowConfirmModal] = useState(false)
 
-    const [confirmModalBudgetId, setConfirmModalBudgetId] = useState()
+    const [confirmModalCategoryId, setConfirmModalCategoryId] = useState()
 
-    const [confirmModalBudgetName, setConfirmModalBudgetName] = useState()
+    const [confirmModalCategoryName, setConfirmModalCategoryName] = useState()
 
-    // const [catNamesArr, setCatNamesArr] = useState([])
+    //confirm modal for delete Budget
+    const [showConfirmBudgetModal, setShowConfirmBudgetModal] = useState(false)
+
+    const [confirmBudgetModalName, setConfirmBudgetModalName] = useState()
+
+    //show state for budget options
+    const [openSettings, setOpenSettings] = useState(false)
+
+
 
 
     //getting budgets, categroies and expenses from useBudgets context
@@ -49,8 +62,6 @@ export default function BudgetPage({title}) {
     
     
     const tempBudgetAppFunc = useRef()
-
-    
 
 
     function openAddExpenseModal(categoryId, categoryName){
@@ -61,8 +72,13 @@ export default function BudgetPage({title}) {
 
     function openConfirmModal(categoryId, categoryName){
         setShowConfirmModal(true)
-        setConfirmModalBudgetId(categoryId)
-        setConfirmModalBudgetName(categoryName)
+        setConfirmModalCategoryId(categoryId)
+        setConfirmModalCategoryName(categoryName)
+    }
+
+    function openConfirmBudgetModal(budgetName){
+        setShowConfirmBudgetModal(true)
+        setConfirmBudgetModalName(budgetName)
     }
     
     
@@ -221,15 +237,9 @@ export default function BudgetPage({title}) {
     tempBudgetAppFunc.current = budgetAppFunc
 
 
-    useEffect(()=>{
-    
-        
+    useEffect(()=>{   
         tempBudgetAppFunc.current()
-        
-    
-
     }, [activeTabIndex, activeTheme])
-
 
 
   return (
@@ -237,8 +247,19 @@ export default function BudgetPage({title}) {
     <div className="background">
 
         
-
-        <div className="pageTitle display-6 my-2"><h1 className='display-inline fw-bold me-2'>{title}</h1>  |Budget</div>
+        {openSettings && <>
+            <div className="blankSpace" onClick={()=>setOpenSettings((prev)=>!prev)}></div>
+            <OptionsDropDown 
+            onDeleteBudgetClick={()=>openConfirmBudgetModal(title)}/>
+        </>}
+        <div className="pageTitle display-6 my-2">
+            <h1 className='display-inline fw-bold me-2'>{title}</h1>|Budget
+            <div className="editBudgetBtn" onClick={()=>setOpenSettings((prev)=>!prev)}>
+                {ellispisIcon}
+            </div>
+        </div>
+        
+        
       
         
         {/* <div className="pageTitle display-6 my-2"><h1 className='display-inline fw-bold me-2'>{title}</h1>  |Budget</div> */}
@@ -294,9 +315,8 @@ export default function BudgetPage({title}) {
                         max={category.max}
                         onAddExpenseClick={() => openAddExpenseModal(category.id, category.name)}
                         onViewExpensesClick={() => setViewExpensesModalBudgetId(category.id)}
-                        onDeleteBudgetClick={()=>openConfirmModal(category.id, category.name)}
+                        onDeleteCategoryClick={()=>openConfirmModal(category.id, category.name)}
                         budgetId={id}
-                
                         />
                         ) 
                 }
@@ -333,9 +353,18 @@ export default function BudgetPage({title}) {
     <ConfirmModal
     show={showConfirmModal}
     handleClose = {()=> setShowConfirmModal(false)}
-    budgetId={confirmModalBudgetId}
-    budgetName={confirmModalBudgetName}
+    categoryId={confirmModalCategoryId}
+    categoryName={confirmModalCategoryName}
     />
+
+    <ConfirmBudgetModal
+    show={showConfirmBudgetModal}
+    handleClose = {()=> setShowConfirmBudgetModal(false)}
+    budgetName={confirmBudgetModalName}
+    />
+
+
+
     </div>
   )
 }

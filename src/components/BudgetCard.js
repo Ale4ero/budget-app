@@ -6,7 +6,7 @@ import { faTrashCan } from '@fortawesome/free-solid-svg-icons'
 const trashIcon = <FontAwesomeIcon icon={faTrashCan} size="xs"/>
 
 
-export default function BudgetCard({name, amount, max, gray, hideButtons, onAddExpenseClick, onViewExpensesClick, onDeleteBudgetClick, budgetId}) {
+export default function BudgetCard({name, amount, max, gray, hideButtons, onAddExpenseClick, onViewExpensesClick, onDeleteCategoryClick, budgetId}) {
   
 
     const classNames = ["budgetCard "]
@@ -30,7 +30,7 @@ export default function BudgetCard({name, amount, max, gray, hideButtons, onAddE
                         )}
                         
                         {!hideButtons && (
-                            <div className="deleteButton" onClick={onDeleteBudgetClick}><i>{trashIcon}</i></div>  
+                            <div className="deleteButton" onClick={onDeleteCategoryClick}><i>{trashIcon}</i></div>  
                         )}
                     </div>
                 </Card.Title>

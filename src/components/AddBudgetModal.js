@@ -78,11 +78,7 @@ export default function AddBudgetModal({ show, handleClose}) {
                         </div>
                     
                     </>}
-                </Form.Group>    
-                    
-                    
-                
-                
+                </Form.Group>                   
             </Modal.Body>
         </Form>
     </Modal>
