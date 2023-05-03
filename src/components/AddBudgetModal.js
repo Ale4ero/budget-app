@@ -66,7 +66,6 @@ export default function AddBudgetModal({ show, handleClose}) {
                         <Form.Label >Select From Budget List</Form.Label>
                         <div className="newBudgetModalContainer">
                             <Form.Select ref={existingNameRef} required>
-                                {/* <option selected disabled hidden></option> */}
                                 {budgets.map(budget =>(            
                                     <option key={budget.name} value={budget.name} selected>{budget.name}</option>
                                 ))}
