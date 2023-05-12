@@ -325,26 +325,31 @@ export default function BudgetPage({title}) {
                 <h1 className='display-inline fw-bold me-2'>{title}</h1>|Budget
             </div>
             <div className="deleteIcon" onClick={()=>openConfirmBudgetModal(title)}><i>{trashIcon}</i></div>
-            <TitleInfoCard
-                mainInfo={curBudget?.goal}
-                description={'Budget Goal'}
-                icon={goalIcon}
-            />
-            <TitleInfoCard
-                mainInfo={budgetExpenseTotal?.toFixed(2)}
-                description={'Expenses'}
-                icon={expenseIcon}
-            />
-            <TitleInfoCard
-                mainInfo={budgetIncomeTotal?.toFixed(2)}
-                description={'Income'}
-                icon={incomeIcon}
-            />
-            <TitleInfoCard
-                mainInfo={budgetEarningsTotal?.toFixed(2)}
-                description={'Earnings'}
-                icon={earningsIcon}
-            />
+
+            <div className="infoCardContainer">
+                <TitleInfoCard
+                    mainInfo={curBudget?.goal}
+                    description={'Budget Goal'}
+                    icon={goalIcon}
+                />
+                <TitleInfoCard
+                    mainInfo={budgetExpenseTotal?.toFixed(2)}
+                    description={'Expenses'}
+                    icon={expenseIcon}
+                />
+                <TitleInfoCard
+                    mainInfo={budgetIncomeTotal?.toFixed(2)}
+                    description={'Income'}
+                    icon={incomeIcon}
+                />
+                <TitleInfoCard
+                    mainInfo={budgetEarningsTotal?.toFixed(2)}
+                    description={'Earnings'}
+                    icon={earningsIcon}
+                />
+
+            </div>
+            
         </div>
         
           

@@ -415,11 +415,16 @@ html{
 .deleteIcon:hover{
     cursor: pointer;
     scale: 1.2;
-    
-    
-    
     background: var(--red);
     color: #ffffff;
+}
+
+.infoCardContainer{
+    display: flex;
+    margin-left: 20px;
+    gap: 20px;
+    flex-wrap: wrap;
+
 }
 
 .titleInfo{
@@ -429,7 +434,6 @@ html{
     background-color: var(--contBg);
     border-radius: 10px;
     color: var(--primaryButton);
-    margin-left: 20px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
     display: flex;
 }
@@ -819,8 +823,25 @@ html{
 
 @media only screen and (max-width: 600px){
 
+    .infoCardContainer{
+        margin-left: auto;
+        justify-content: center;
+    }
+
+    .titleInfo{
+        width: 150px;
+        
+    }
+
+    .titleMainInfo{
+        font-size: 21px;
+    }
+
     .budgetsContainer{
         padding: 10px;
+    }
+    .budgetContent{
+        margin-bottom: 90px;
     }
 
     .pageContent{
@@ -832,12 +853,12 @@ html{
         height: auto;
     }
 
-    .totalDetails{
+    /* .totalDetails{
         display: none;
-    }
+    } */
 
     .dataContainer{
-        height: 120px;
+        height: 150px;
     }
 
 
