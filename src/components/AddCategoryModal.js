@@ -28,7 +28,7 @@ export default function AddCategoryModal({ show, handleClose, budget}) {
                     <Form.Control ref={nameRef} type="text" autoComplete="off" required maxLength={"15"}/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="max">
-                    <Form.Label>Max Spending</Form.Label>
+                    <Form.Label>Spending Goal</Form.Label>
                     <Form.Control 
                         ref={maxRef} 
                         type="number" 

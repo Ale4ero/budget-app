@@ -23,7 +23,7 @@ export default function ConfirmBudgetModal({show, handleClose,budgetName}) {
               <Modal.Title>{name}</Modal.Title>
             </Modal.Header>
           <Modal.Body>
-          <p>All categories and expenses in this budget will be Deleted premenently.</p>
+          <p>All categories and expenses in this budget will be deleted permanently.</p>
               <Button className='mx-3' variant="primary" type='submit'>
                 Yes
               </Button>

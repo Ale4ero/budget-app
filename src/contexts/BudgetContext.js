@@ -5,8 +5,6 @@ import useLocalStorage from "../hooks/useLocalStorage"
 
 const BudgetsContext = React.createContext()
 
-export const UNCATEGORIZED_BUDGET_ID = "Uncategorized"
-
 export function useBudgets(){
     return useContext(BudgetsContext)
 }
@@ -16,11 +14,16 @@ export const BudgetsProvider = ({ children }) => {
     const [expenses, setExpenses] = useLocalStorage("expenses",[])
     const [budgets, setBudgets] = useLocalStorage("budgets",[])
     const [tabBudgets, setTabBudgets] = useLocalStorage("tab budgets", [])
+    const [income, setIncome] = useLocalStorage("income", [])
 
     const [activeTabIndex, setActiveTabIndex] = useState(localStorage.getItem('currentIndex'))
 
     const [activeTheme, setActiveTheme] = useState(localStorage.getItem('selectedTheme'))
     
+    const [deleteClick, setDeleteClick] = useState(0)
+
+
+
     function getBudgetExpenses(budgetId){
         return expenses.filter(expense => expense.budgetId === budgetId)
     }
@@ -29,35 +32,37 @@ export const BudgetsProvider = ({ children }) => {
         setExpenses(prevExpenses =>{
             return [...prevExpenses, { id: uuidv4(), description, amount, budgetId, budget }]
         })
-
     }
 
     function addCategory({name, max, budget}){
         setCategories(prevCategories =>{
-            // if (prevCategories.find(category => (category.name === name) )){
-            //     return prevCategories
-            // }
             return [...prevCategories, { id: uuidv4(), name, max, budget }]
         })
-
-
     }
 
-    function addBudget({name}){
+    function addBudget({name, goal}){
         setBudgets(prevBudgets =>{
+            //if budget already exists simply return prevBudgets
             if(prevBudgets.find(budget => budget.name === name)){
                 return prevBudgets
             }
-            return [...prevBudgets, {id: uuidv4(), name}]
+            return [...prevBudgets, {id: uuidv4(), name, goal}]
         })
     }
 
     function deleteBudget(){
+        //filter out budget and its respective categories and expenses
+
         //get current index from local storage
         var index = localStorage.getItem("currentIndex")
 
         //get current page budget name
         var name = budgets[index].name
+
+        //remove budget tab
+        setTabBudgets(prevTabBudgets=>{
+            return prevTabBudgets.filter(tab => tab.name !== name)
+        }) 
         
         setExpenses(prevExpenses=>{
             return prevExpenses.filter(expense => expense.budget !== name)
@@ -65,18 +70,20 @@ export const BudgetsProvider = ({ children }) => {
         setCategories(prevCategories=>{
             return prevCategories.filter(category => category.budget !== name)
         })
-       
-        
-        console.log("delete "+ name)
         setBudgets(prevBudgets =>{
             return prevBudgets.filter( budget => budget.name !== name)
         })
-        setTabBudgets(prevTabBudgets=>{
-            return prevTabBudgets.filter(tab => tab.name !== name)
+        setIncome(prevIncome =>{
+            return prevIncome.filter(income=> income.budget !== name)
         })
+
         
         
-        
+    }
+
+    function setTabIndex(index){
+        setActiveTabIndex(index)
+        localStorage.setItem("currentIndex", index || 0)
     }
 
     function addTabBudget({name}){
@@ -88,9 +95,10 @@ export const BudgetsProvider = ({ children }) => {
             } 
             return [...prevTabBudgets, {id: uuidv4(), name}]
         })
-        // var newIndex = tabBudgets.length+1
-        // console.log('from context set new index to:'+ newIndex)
-        // setTabIndex(newIndex)
+        const newIndex = tabBudgets.length
+        console.log("i want to set index to "+ newIndex)
+
+        setTabIndex(newIndex)
     }
 
     function removeTabBudget({name}){
@@ -100,19 +108,15 @@ export const BudgetsProvider = ({ children }) => {
     }
     
     function deleteCategory(id){
-        //deal with expenses that are now uncategorized
-        console.log("contect deleting: "+id)
+        //delete exoense in category we just deleted
         setExpenses(prevExpenses => {
-            return prevExpenses.map(expense => {
-                if(expense.budgetId !== id) return expense
-                return { ...expense, budgetId: UNCATEGORIZED_BUDGET_ID}
-            })
+            return prevExpenses.filter(expense => expense.budgetId !== id)
         })
 
-        setCategories(prevBudgets =>{
-            return prevBudgets.filter(budget => budget.id !== id)
+        //filter out category we just deleted
+        setCategories(prevCategories =>{
+            return prevCategories.filter(budget => budget.id !== id)
         })
-        // window.location.reload()
     }
 
 
@@ -122,15 +126,24 @@ export const BudgetsProvider = ({ children }) => {
         })
     }
 
-    function setTabIndex(index){
-        setActiveTabIndex(index)
-        localStorage.setItem("currentIndex", index || 0)
-    }
+    
 
     function setTheme(theme){
         localStorage.setItem('selectedTheme', theme)
         setActiveTheme(theme)
         document.querySelector("body").setAttribute('data-theme', theme)
+    }
+
+    function addIncome({budget, amount, date}){
+        setIncome(prevIncome =>{
+            return [...prevIncome, {id: uuidv4() ,budget, amount, date}]
+        })
+    }
+
+    function deleteIncome({id}){
+        setIncome(prevIncome =>{
+            return prevIncome.filter(income => income.id !== id)
+        })
     }
     
 
@@ -141,6 +154,8 @@ export const BudgetsProvider = ({ children }) => {
         tabBudgets,
         activeTabIndex,
         activeTheme,
+        income,
+        deleteClick,
         getBudgetExpenses,
         addExpense,
         addCategory,
@@ -151,6 +166,9 @@ export const BudgetsProvider = ({ children }) => {
         addTabBudget,
         removeTabBudget,
         setTabIndex,
-        setTheme
+        setTheme,
+        addIncome,
+        deleteIncome,
+        setDeleteClick
     }}> {children} </BudgetsContext.Provider>
 }

@@ -8,7 +8,7 @@ import { Form } from 'react-bootstrap'
 export default function ConfirmModal({show, handleClose, categoryId, categoryName}) {
 
     const {deleteCategory} = useBudgets()
-    const name = "Delete "+ categoryName +" Category?"
+    const name = "Delete ''"+ categoryName +"'' Category?"
 
     function handleSubmit(e){
       deleteCategory(categoryId)
@@ -23,7 +23,7 @@ export default function ConfirmModal({show, handleClose, categoryId, categoryNam
               <Modal.Title>{name}</Modal.Title>
             </Modal.Header>
           <Modal.Body>
-          <p>All expenses will be moved into "Uncategorized" category.</p>
+          <p>All expenses in this category will be deleted permenently.</p>
               <Button className='mx-3' variant="primary" type='submit'>
                 Yes
               </Button>

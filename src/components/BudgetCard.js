@@ -29,9 +29,9 @@ export default function BudgetCard({name, amount, max, gray, hideButtons, onAddE
                             <span className="text-muted fs-6 ms-1">/ {currencyFormatter.format(max)}</span>
                         )}
                         
-                        {!hideButtons && (
-                            <div className="deleteButton" onClick={onDeleteCategoryClick}><i>{trashIcon}</i></div>  
-                        )}
+                        
+                        <div className="deleteButton" onClick={onDeleteCategoryClick}><i>{trashIcon}</i></div>  
+                        
                     </div>
                 </Card.Title>
                 {max&&(

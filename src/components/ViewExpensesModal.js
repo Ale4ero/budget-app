@@ -1,17 +1,18 @@
 import { Modal, Button, Stack, CloseButton } from "react-bootstrap"
-import { UNCATEGORIZED_BUDGET_ID, useBudgets } from "../contexts/BudgetContext"
+import {useBudgets } from "../contexts/BudgetContext"
 import { currencyFormatter } from "../utils"
 
 
-export default function ViewExpensesModal({ budgetId, handleClose}) {
+export default function ViewExpensesModal({ categoryId, handleClose}) {
     const { getBudgetExpenses, categories, deleteExpense} = useBudgets()
 
-    const category = UNCATEGORIZED_BUDGET_ID === budgetId ? {name: "Uncategorized", id: UNCATEGORIZED_BUDGET_ID} : categories.find(b=> b.id === budgetId)
-    const expenses = getBudgetExpenses(budgetId)
-    // console.log("in view expense: "+budget)
+    //get category using category id 
+    const category = categories.find(category=> category.id === categoryId)
+    //get expenses in that category id
+    const expenses = getBudgetExpenses(categoryId)
 
   return (
-    <Modal show={budgetId != null} onHide={handleClose}>
+    <Modal show={categoryId != null} onHide={handleClose}>
         <Modal.Header>
             <Modal.Title>
                 <Stack direction="horizontal" gap="2">

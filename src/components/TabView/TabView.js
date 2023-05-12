@@ -4,14 +4,16 @@ import './TabView.css'
 import AddBudgetModal from '../AddBudgetModal'
 import BudgetPage from "../../components/BudgetPage";
 import {useBudgets} from "../../contexts/BudgetContext";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleMinus} from '@fortawesome/free-solid-svg-icons'
 
-
+const minusIcon = <FontAwesomeIcon icon={faCircleMinus} size='sm'/>
 
 function TabView({ editable = false}) {
 
-    const {budgets, setTabIndex, tabBudgets, removeTabBudget} = useBudgets()
+    const {budgets, setTabIndex, tabBudgets, removeTabBudget, activeTabIndex, deleteClick, setDeleteClick} = useBudgets()
 
-    const [activeTabIndex, setActiveTabIndex] = useState(localStorage.getItem('currentIndex'))
+    // const [activeTabIndex, setActiveTabIndex] = useState(localStorage.getItem('currentIndex'))
     const[allTabs, setAllTabs] = useState([{}])
 
     const NewTabButton = <div className="tabBtn" onClick={()=> addTab()}>+</div>
@@ -40,13 +42,15 @@ function TabView({ editable = false}) {
         removeTabBudget(name)
         console.log("newTabs: "+newTabs)
         setAllTabs(newTabs)
+        setTabIndex(newTabs.length)
+        setDeleteClick(deleteClick+1)
         
     }
 
     const activateTab = (index) => {
         index = index || 0
         // console.log("activate tab to index "+ index)
-        setActiveTabIndex(index) //local
+        // setActiveTabIndex(index) //local
         setTabIndex(index) //useBudgets
     }
 
@@ -57,7 +61,7 @@ function TabView({ editable = false}) {
             console.log('since active tab is null set it to '+ temp)
             activateTab(tabBudgets.length - 1)
         }else{
-            setActiveTabIndex(localStorage.getItem("currentIndex"))
+            // setActiveTabIndex(localStorage.getItem("currentIndex"))
             // console.log("reload save tab at index"+ activeTabIndex)
             activateTab(activeTabIndex)
             
@@ -118,7 +122,7 @@ function TabView({ editable = false}) {
                             }}
                         >
                             {tab.name}
-                            <div className="deleteTab" onClick={()=>deleteTab(tab.name, index)}>&times;</div>
+                            <div className="deleteTab" onClick={()=>deleteTab(tab.name, index)}>{minusIcon}</div>
                             <div className='borderRight'></div>
                         </label>
                         
